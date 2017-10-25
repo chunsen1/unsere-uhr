@@ -1,4 +1,4 @@
-const ws281x = require('./ws281x-native-mock')
+const ws281x = require('rpi-ws281x-native')
 const LED_COUNT = 164
 
 ws281x.init(LED_COUNT)

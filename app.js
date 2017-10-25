@@ -1,6 +1,6 @@
 const later =  require('later'),
       leds = require('./leds'),
-      ws281x = require('./ws281x-native-mock')
+      ws281x = require('rpi-ws281x-native')
 
 var schedule = later.parse.text('every 1 seconds')
 
