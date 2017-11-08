@@ -7,7 +7,9 @@ let pixels = new Uint32Array(LED_COUNT)
 let getColour = () => 0xffffff
 
 let lightLeds = (indices) => {
-    indices.forEach(x => pixels[x] = getColour());
+    indices
+        .reduce((acc, cur) => cur.concat(acc), [])
+        .forEach(x => pixels[x] = getColour())
 }
 
 let clearLeds = () => {
@@ -20,49 +22,49 @@ let render = () => {
     ws281x.render(pixels)
 }
 
-let esIst = [0, 1, 2, 3, 4],
-    eins = [5, 6, 7, 8],
-    ein = [5, 6, 7],
-    zwei = [9, 10, 11, 12, 14, 15],
-    drei = [29, 20, 21, 22, 24, 25],
-    vier = [39, 30, 31, 32, 34, 35],
-    fuenf = [49, 40, 41, 42, 44, 45],
-    sechs = [59, 50, 51, 52, 54, 55],
-    sieben = [69, 60, 61, 62, 64, 65],
-    acht = [79, 70, 71, 72, 74, 75],
-    neun = [89, 80, 81, 82, 84, 85],
-    zehn = [99, 90, 91, 92, 94, 95],
-    elf = [109, 100, 101, 102, 104, 105],
-    zwoelf = [119, 110, 111, 112, 114, 115],
-    mZwanzig = [129, 120, 121, 122, 124, 125],
-    mFuenf = [139, 130, 131, 132, 134, 135],
-    mZehn = [149, 140, 141, 142, 144, 145],
-    viertel = [159, 150, 151, 152, 154, 155],
-    vor = [9, 10, 11, 12, 14, 15],
-    nach = [9, 10, 11, 12, 14, 15],
-    halb = [9, 10, 11, 12, 14, 15],
-    uhr = [9, 10, 11, 12, 14, 15],
-    und = [9, 10, 11, 12, 14, 15],
+let range = (a, b) => {
+    let res = []
+    for(var i = a; i <= b; i += 1) {
+        res.push(i)
+    }
+}
+
+const pins = {
+    esIst: [1, 2, 3, 4, 7, 8, 9, 10, 11, 12],
+
+    eins: range(128, 133),
+    zwei: range(112, 119),
+    drei: range(134, 141),
+    vier: range(148, 155),
+    fuenf: range(104, 111),
+    sechs: range(168, 177),
+    sieben: range(178, 189),
+    acht: range(156, 163),
+    neun: range(209, 216),
+    zehn: range(215, 222),
+    elf: range(100, 105),
+    zwoelf: range(190, 199),
+
+    mZwanzig: [24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37],
+    mFuenf: [15, 16, 17, 18, 19, 20, 21, 22],
+    mZehn: [38, 39, 40, 41, 42, 43, 44, 45],
+
+    viertel: range(54, 96),
+    dreiviertel: range(46, 96),
+    vor: range(84, 89),
+    nach: range(68, 75),
+    halb: range(90, 97),
+    uhr: range(201, 206),
     
-    undEins = [9],
-    undZwei = [9, 10],
-    undDrei = [9, 10, 11],
-    undVier = [9, 10, 11, 12]
+    undEins: [0],
+    undZwei: [0, 23],
+    undDrei: [0, 23, 200],
+    undVier: [0, 23, 200, 223]
+}
 
 module.exports = {
-    esIst: () => lightLeds(esIst),
-    eins: () => lightLeds(eins),
-    zwei: () => lightLeds(zwei),
-    drei: () => lightLeds(drei),
-    vier: () => lightLeds(vier),
-    fuenf: () => lightLeds(fuenf),
-    sechs: () => lightLeds(sechs),
-    sieben: () => lightLeds(sieben),
-    acht: () => lightLeds(acht),
-    neun: () => lightLeds(neun),
-    zehn: () => lightLeds(zehn),
-    elf: () => lightLeds(elf),
-    zwoelf: () => lightLeds(zwoelf),
+    lightleds: (data) => lightLeds(data),
+    pins: pins,
 
     clear: () => clearLeds(),
     render: () => render()
