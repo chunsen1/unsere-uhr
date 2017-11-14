@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "serve": "sudo /usr/lib/nodejs/node-v6.11.4/bin/node app.js"
+    "serve": "sudo /usr/lib/nodejs/node-v6.11.4/bin/node app.js",
+    "iterate": "sudo /usr/lib/nodejs/node-v6.11.4/bin/node iterate_words.js"    
   },
   "author": "",
   "license": "ISC",
