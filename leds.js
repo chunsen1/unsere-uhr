@@ -52,8 +52,8 @@ const pins = {
     mFuenf: [15, 16, 17, 18, 19, 20, 21, 22],
     mZehn: [38, 39, 40, 41, 42, 43, 44, 45],
 
-    viertel: range(54, 96),
-    dreiviertel: range(46, 96),
+    viertel: range(54, 67),
+    dreiviertel: range(46, 67),
     vor: range(84, 89),
     nach: range(68, 75),
     halb: range(90, 97),

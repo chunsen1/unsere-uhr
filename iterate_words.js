@@ -29,3 +29,8 @@ later.setInterval(() => {
     
     i++
 }, schedule)
+
+process.on('SIGINT', () => {
+    ws281x.reset()
+    process.nextTick(() => process.exit(0))
+})
