@@ -30,6 +30,7 @@ let range = (a, b) => {
     for(var i = a; i <= b; i += 1) {
         res.push(i)
     }
+    return res
 }
 
 const pins = {
