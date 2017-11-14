@@ -1,5 +1,5 @@
 const ws281x = require('rpi-ws281x-native')
-const LED_COUNT = 164
+const LED_COUNT = 224
 
 ws281x.init(LED_COUNT)
 //ws281x.setBrightness(1)
