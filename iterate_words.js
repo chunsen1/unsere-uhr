@@ -7,7 +7,7 @@ var schedule = later.parse.text('every 1 seconds')
 
 let i = 0
 
-let words = [leds.pins.esIst, leds.pins.eins, leds.pins.zwei, leds.pins.drei, leds.pins.vier, 
+let words = [leds.pins.esIst, leds.pins.ein, leds.pins.eins, leds.pins.zwei, leds.pins.drei, leds.pins.vier, 
     leds.pins.fuenf, leds.pins.sechs, leds.pins.sieben, leds.pins.acht, leds.pins.neun,
      leds.pins.zehn, leds.pins.elf, leds.pins.zwoelf, leds.pins.mZwanzig, leds.pins.mFuenf, leds.pins.mZehn,
      leds.pins.viertel, leds.pins.dreiviertel, leds.pins.vor, leds.pins.nach, leds.pins.halb, leds.pins.uhr,
