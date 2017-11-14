@@ -107,7 +107,7 @@ later.setInterval(() => {
 
     let y = []
     if (hour === 0 || hour === 12 || hour === 24) { y = leds.pins.zwoelf }
-    if (hour === 1 || hour === 13) { y = leds.pins.eins }
+    if (hour === 1 || hour === 13) { if(minutes === 0) y = leds.pins.ein; else y = leds.pins.eins}
     if (hour === 2 || hour === 14) { y = leds.pins.zwei }
     if (hour === 3 || hour === 15) { y = leds.pins.drei }
     if (hour === 4 || hour === 16) { y = leds.pins.vier }

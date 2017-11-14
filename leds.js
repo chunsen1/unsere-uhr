@@ -36,7 +36,8 @@ let range = (a, b) => {
 const pins = {
     esIst: [1, 2, 3, 4, 7, 8, 9, 10, 11, 12],
 
-    eins: range(128, 133),
+    ein: range(128, 133),
+    eins: range(126, 133),
     zwei: range(112, 119),
     drei: range(134, 141),
     vier: range(148, 155),
