@@ -1,0 +1,35 @@
+############
+
+Helligkeitssensor:
+
+sudo respi-config
+-> Tool Update
+
+sudo raspi-config
+-> 5 Interface Options
+-> SPI aktivieren
+
+--
+
+/boot/config.txt -> "dtparam=audio=on" -> "# dtparam=audio=on"
+
+
+
+--
+
+sudo su
+apt update
+apt upgrade // force + silent
+reboot
+apt install git // silent
+wget https://nodejs.org/dist/v8.9.3/node-v8.9.3-linux-armv6l.tar.xz
+tar -xf node-*
+cp -R node-*/* /usr/local/
+export PATH=$PATH:/usr/local/bin
+
+
+exit
+
+git clone https://github.com/chunsen1/unsere-uhr.git
+cd unsere-uhr
+npm install
