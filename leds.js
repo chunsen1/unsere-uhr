@@ -5,7 +5,7 @@ ws281x.init(LED_COUNT)
 //ws281x.setBrightness(1)
 
 let pixels = new Uint32Array(LED_COUNT)
-let getColour = () => 0xff0000
+let getColour = () => 0xffffff
 
 let lightLeds = (indices) => {
     indices
@@ -21,7 +21,7 @@ let clearLeds = () => {
 }
 
 let render = () => {
-    ws281x.setBrightness(1)
+    ws281x.setBrightness(100)
     ws281x.render(pixels)
 }
 
