@@ -129,8 +129,6 @@ later.setInterval(() => {
 	default: log.push("nix")
     }
 
-    console.log(date, hour, minutes, log)
-
     leds.lightleds(x)
     leds.render()
 
