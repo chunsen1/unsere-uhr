@@ -1,4 +1,5 @@
 const ws281x = require('rpi-ws281x-native')
+const light = require('./utils/light')
 const LED_COUNT = 224
 
 ws281x.init(LED_COUNT)
@@ -21,7 +22,7 @@ let clearLeds = () => {
 }
 
 let render = () => {
-    ws281x.setBrightness(100)
+    ws281x.setBrightness(light.getBrightness())
     ws281x.render(pixels)
 }
 

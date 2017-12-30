@@ -16,6 +16,7 @@
     "mcp-spi-adc": "^1.0.0",
     "moment": "^2.19.1",
     "moment-timezone": "^0.5.13",
+    "moving-average": "^1.0.0",
     "rpi-ws281x-native": "^0.8.2"
   },
   "devDependencies": {
