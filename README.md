@@ -1,6 +1,26 @@
 # unsere-uhr
 
-## W-Lan Verbindung konfigurieren
+## Uhr Updaten
+
+### Software aktualisieren
+
+1. SSH-Verbindung zur Uhr aufbauen
+2. ```cd unsere-uhr```
+3. ```git pull```
+4. ```npm install```
+4. ```sudo reboot now```
+
+### Sonstige Software updaten
+
+1. Per SSH verbinden
+2. ```sudo apt update```
+3. ```sudo apt upgrade```
+4. ```sudo npm i -g npm```
+5. ```sudo reboot now```
+
+## How-To
+
+### W-Lan Verbindung konfigurieren
 1. SD-Karte an einen Rechner stecken
 2. Boot-Partition öffnen (geht auch unter Windows)
 3. Die Datei ```wpa.txt``` bearbeiten
@@ -21,12 +41,11 @@ PS: die Datei wpa_supplicant.conf wird bei jedem Bootvorgang wegkopiert, wenn es
     * UNIX Zeilenenden
 * WPA2 Netzwerke benötigen ggfs. weitere Einstellungen. Verwendet in diesem Fall bitte [diese Datei](wpa_supplicant.conf2) und speichert sie als ```wpa_supplicant.conf```
 
-## Bei Zeitproblemen
+### Bei Zeitproblemen
 * sudo raspi-config -> Localization -> Zeitzone -> Europa -> Berlin
 * sudo apt install ntpdate
 * Manuelles Update
 
-## Bootscript
+### Bootscript
 * rc.local bearbeiten ```sudo nano /etc/rc.local```
 * ```sudo /usr/local/bin/node /home/pi/unsere-uhr/app.js``` vor ```exit 0``` eintragen
-
