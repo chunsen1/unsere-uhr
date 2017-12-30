@@ -3,7 +3,6 @@ const light = require('./utils/light')
 const LED_COUNT = 224
 
 ws281x.init(LED_COUNT)
-//ws281x.setBrightness(1)
 
 let pixels = new Uint32Array(LED_COUNT)
 let getColour = () => 0xffffff
