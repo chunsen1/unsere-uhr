@@ -5,7 +5,7 @@ const MA = require('moving-average')
 let initialized = 0
 
 // moving average
-let timespan = 60 * 1000
+let timespan = 10 * 1000
 let average = MA(timespan)
 
 // open sensor and set reading interval
