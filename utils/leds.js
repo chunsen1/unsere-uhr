@@ -1,5 +1,5 @@
 const ws281x = require('rpi-ws281x-native')
-const light = require('./utils/light')
+const light = require('./light')
 const LED_COUNT = 224
 
 ws281x.init(LED_COUNT)
