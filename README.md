@@ -6,7 +6,8 @@
 
 1. SSH-Verbindung zur Uhr aufbauen
 2. ```cd unsere-uhr```
-3. ```git pull```
+3. ```git fetch --all --tags```
+3. ```git checkout tags/v0.2```
 4. ```npm install```
 4. ```sudo reboot now```
 
