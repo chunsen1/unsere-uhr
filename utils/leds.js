@@ -25,13 +25,7 @@ let render = () => {
     ws281x.render(pixels)
 }
 
-let range = (a, b) => {
-    let res = []
-    for(var i = a; i <= b; i += 1) {
-        res.push(i)
-    }
-    return res
-}
+let range = (a, b) => Array.from(Array(b - a + 1), (x, i) => i + a) 
 
 const pins = {
     esIst: [1, 2, 3, 4, 7, 8, 9, 10, 11, 12],
