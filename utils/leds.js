@@ -21,7 +21,6 @@ let clearLeds = () => {
 }
 
 let render = () => {
-    
     ws281x.setBrightness(light.getBrightness())
     ws281x.render(pixels)
 }
