@@ -9,9 +9,9 @@ let getColour = () => 0xffffff
 
 let lightLeds = (indices) => {
     indices
-	.filter(x => !!x)
+	    .filter(x => !!x)
         .reduce((acc, cur) => cur.concat(acc), [])
-        .forEach(x => pixels[x] = getColour())
+        .forEach(x => pixels[x] = getColour(x))
 }
 
 let clearLeds = () => {

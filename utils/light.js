@@ -14,7 +14,7 @@ let timespan = S.light.getTimeSpan() * 1000
 let average = MA(timespan)
 
 // open sensor and set reading interval
-let tempSensor = mcpadc.open(0, { speedHz: 1350000 }, e => {
+let lightSensor = mcpadc.open(0, { speedHz: 1350000 }, e => {
     if (e) {
         console.log(e)
         initialized = -1
@@ -22,7 +22,7 @@ let tempSensor = mcpadc.open(0, { speedHz: 1350000 }, e => {
     }
     
     setInterval(() => {
-        tempSensor.read((err, reading) => {
+        lightSensor.read((err, reading) => {
             if (err) throw err;
             
             average.push(Date.now(), reading.value)
@@ -40,7 +40,21 @@ let scale = x => {
     return y
 }
 
+// brightness function
+let getBrightness = () => {
+    if (S.brightness.getStrategy() === S.brightness.STRATEGIES.AMBIENT_LIGHT) {
+        return scale(average.movingAverage())
+    }
+
+    if (S.brightness.getStrategy() === S.brightness.STRATEGIES.SCHEDULE) {
+        // todo: implement ;)
+    }
+
+    // default strategy: fixed value
+    return S.brightness.getFixedValue()
+}
+
 // exports
 module.exports = {
-    getBrightness: () => scale(average.movingAverage())
+    getBrightness: getBrightness
 }
