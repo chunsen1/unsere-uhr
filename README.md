@@ -40,7 +40,7 @@ PS: die Datei wpa_supplicant.conf wird bei jedem Bootvorgang wegkopiert, wenn es
     * UTF-8 als Encoding
     * Keine Byte Order Mark (BOM)
     * UNIX Zeilenenden
-* WPA2 Netzwerke benötigen ggfs. weitere Einstellungen. Verwendet in diesem Fall bitte [diese Datei](wpa_supplicant.conf2) und speichert sie als ```wpa_supplicant.conf```
+* WPA2 Netzwerke benötigen ggfs. weitere Einstellungen. Verwendet in diesem Fall bitte [diese Datei](etc/wpa_supplicant.conf2) und speichert sie als ```wpa_supplicant.conf```
 
 ### Bei Zeitproblemen
 * sudo raspi-config -> Localization -> Zeitzone -> Europa -> Berlin
