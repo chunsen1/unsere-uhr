@@ -1,6 +1,6 @@
 {
   "name": "unsere-uhr",
-  "version": "0.2",
+  "version": "0.3.0-alpha.2",
   "description": "Code für unsere Uhr",
   "main": "app.js",
   "scripts": {
@@ -24,6 +24,7 @@
     "arm"
   ],
   "dependencies": {
+    "body-parser": "^1.18.2",
     "express": "^4.16.2",
     "later": "^1.2.0",
     "mcp-spi-adc": "^1.0.0",
@@ -31,7 +32,8 @@
     "moment-timezone": "^0.5.13",
     "moving-average": "^1.0.0",
     "node-ipc": "^9.1.1",
-    "rpi-ws281x-native": "^0.8.2"
+    "rpi-ws281x-native": "^0.8.2",
+    "yargs": "^10.1.1"
   },
   "devDependencies": {
     "karma": "^1.7.1"
