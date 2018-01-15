@@ -1,7 +1,6 @@
 const later =  require('later'),
       ws281x = require('rpi-ws281x-native'),
       clock = require('./utils/clock'),
-      ipc = require('node-ipc'),
       express = require('express'),
       yargs = require('yargs'),
       bodyParser = require('body-parser'),
