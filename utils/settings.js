@@ -13,8 +13,21 @@ let ambientLightMin = 0
 let ambientLightMax = 0.5
 let ambientLightReadInterval = 100 // needs restart
 
-// color (static and function)
-let color = 0xffffff
+// LED configuration
+const LED_COUNT = 224,
+      colors = new Uint32Array(LED_COUNT)
+
+function setColors(values) {
+    if (Array.isArray(values) && values.length === LED_COUNT) {
+        values.forEach((val, idx) => colors[idx] = val)
+        return true
+    }
+
+    return false
+}
+
+// set initial colors to white
+setColors(Array.from(new Array(LED_COUNT), () => 0xffffff))
 
 // exports
 module.exports = {
@@ -36,8 +49,10 @@ module.exports = {
         setFixedValue: value => brightness = Math.min(Math.max(0, value), 100)
     },
     color: {
-        get: pixel => color,
-        set: value => color = value
+        get: pixel => colors[pixel],
+        set: (pixel, value) => colors[pixel] = value,
+        getAll: () => colors,
+        setAll: (values) => setColors(values)
     },
     words: {
         // viertel nach x // viertel x+1 // issue #8
