@@ -1,4 +1,4 @@
-const leds = require('./utils/leds')
+const leds = require('../utils/leds')
 
 module.exports = () => {
     let date = new Date(Date.now())

@@ -38,7 +38,7 @@ app.put('/settings/brightness/fixed-value', routesBrightness.setFixedValue)
 
 // routes: color settings
 app.get('/settings/color', routesColor.getColor)
-app.put('/settings/color', routesColor.settings)
+app.put('/settings/color', routesColor.setColor)
 
 // start server
 app.listen(argv.port, () => console.log(`\r\n The server is running on localhost:${argv.port}`))
