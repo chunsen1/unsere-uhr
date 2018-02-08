@@ -1,17 +1,13 @@
 const assert = require('assert'),
-      mockery = require('mockery')
+      mockery = require('mockery'),
+      ws281x = require('./mock/ws281x-native-mock'),
+      mcpspiadc = require('./mock/mcp-spi-adc')
 
 before('enable mockery', () => {
-    mockery.enable({
-        warnOnReplace: true,
-        warnOnUnregistered: true
-    })
-
-    var fsMock = {
-        stat: () => 3
-    }
-
-    mockery.registerMock('fs', fsMock)
+    mockery.enable()
+    mockery.registerMock('fs-mock', { stat: () => 3})
+    mockery.registerMock('rpi-ws281x-native', ws281x)
+    mockery.registerMock('mcp-spi-adc', mcpspiadc)
 })
 
 describe('light.js', () => {
@@ -21,8 +17,21 @@ describe('light.js', () => {
         })
 
         it('should load mocks', () => {
-            let fs = require('fs')
+            let fs = require('fs-mock')
             assert.equal(fs.stat(), 3)
+        })
+
+        it('should somewhat work', (done) => {
+            let light = require('../utils/light')
+
+            setTimeout(() => {
+                assert.equal(Number.isFinite(light.getBrightness(), 80))
+                done()
+            }, 1800)             
+        })
+
+        it('should run the app', (done) => {
+
         })
     })
 })
