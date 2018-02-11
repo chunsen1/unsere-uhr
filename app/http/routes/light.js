@@ -1,4 +1,4 @@
-const settings = require('../utils/settings')
+const settings = require('../../../utils/settings')
 
 const getLight = (req, res) => res.status(200).json({ 
     timeSpan: settings.light.getTimeSpan(),

@@ -29,6 +29,24 @@ function setColors(values) {
 // set initial colors to white
 setColors(Array.from(new Array(LED_COUNT), () => 0xffffff))
 
+// text configuration
+const quarterPastStrategies = {
+    VIERTEL_NACH: 'VIERTEL_NACH',
+    VIERTEL: 'VIERTEL'
+}
+const quarterToStrategies = {
+    VIERTEL_VOR: 'VIERTEL_VOR',
+    DREIVIERTEL: 'DREIVIERTEL'
+}
+const oClockStrategies = {
+    MIT_UHR: 'MIT_UHR',
+    OHNE_UHR: 'OHNE_UHR'
+}
+
+let quarterPastStrategy = quarterPastStrategies.VIERTEL
+let quarterToStrategy = quarterToStrategies.DREIVIERTEL
+let oClockStrategy = oClockStrategies.MIT_UHR
+
 // exports
 module.exports = {
     light: {
@@ -55,8 +73,32 @@ module.exports = {
         setAll: (values) => setColors(values)
     },
     words: {
-        // viertel nach x // viertel x+1 // issue #8
-        // es ist x // es ist x uhr // issue #9
-        // viertel vor x // dreiviertel x // issue #10
+        QuarterPastStrategies: quarterPastStrategies,
+        QuarterToStrategies: quarterToStrategies,
+        OClockStrategies: oClockStrategies,
+        getQuarterPastStrategy: () => quarterPastStrategy,
+        getQuarterToStrategy: () => quarterToStrategy,
+        getOClockStrategy: () => oClockStrategy,
+        setQuarterPastStrategy: (value) => {
+            if (Object.values(quarterPastStrategies).indexOf(value) > -1) {
+                quarterPastStrategy = value
+            } else {
+                throw new TypeError(`'${value}' is not an accepted value for this property`)
+            }
+        },
+        setQuarterToStrategy: (value) => {
+            if (Object.values(quarterToStrategies).indexOf(value) > -1) {
+                quarterToStrategy = value
+            } else {
+                throw new TypeError(`'${value}' is not an accepted value for this property`)
+            }
+        },
+        setOClockStrategy: (value) => {
+            if (Object.values(oClockStrategies).indexOf(value) > -1) {
+                oClockStrategy = value
+            } else {
+                throw new TypeError(`'${value}' is not an accepted value for this property`)
+            }
+        }
     }
 }

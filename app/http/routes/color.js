@@ -1,4 +1,4 @@
-const settings = require('../utils/settings')
+const settings = require('../../../utils/settings')
 
 let getColor = (req, res) => res.status(200).json(settings.color.getAll())
 

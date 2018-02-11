@@ -1,4 +1,4 @@
-const settings = require('../utils/settings')
+const settings = require('../../../utils/settings')
 
 const getBrightness = (req, res) => res.status(200).json({
     strategies: settings.brightness.STRATEGIES,

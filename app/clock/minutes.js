@@ -1,10 +1,12 @@
 const leds = require('../../utils/leds'),
-      settings = require('../../utils/settings')
+      W = require('../../utils/settings').words
 
-// es ist ... uhr
+// es ist ... (uhr)
 function between0and4(state) {
-    state.log.push("uhr")
-    state.leds.push(leds.pins.uhr)
+    if (W.getOClockStrategy() === W.OClockStrategies.MIT_UHR) {
+        state.log.push("uhr")
+        state.leds.push(leds.pins.uhr)
+    }
 }
 
 // es is 5 nach ...
@@ -21,11 +23,17 @@ function between10and14(state) {
     state.leds.push(leds.pins.nach)
 }
 
-// viertel ...+1
+// viertel nach / viertel ...+1
 function between15and19(state) {
-    state.log.push("viertel", "h+1")
-    state.leds.push(leds.pins.viertel)
-    state.hour += 1
+    if (W.getQuarterPastStrategy() === W.QuarterPastStrategies.VIERTEL) {
+        state.log.push("viertel", "h+1")
+        state.leds.push(leds.pins.viertel)
+        state.hour += 1
+    } else {
+        state.log.push("viertel", "nach")
+        state.leds.push(leds.pins.viertel)
+        state.leds.push(leds.pins.nach)
+    }
 }
 
 // es ist zwanzig nach ...
@@ -70,8 +78,15 @@ function between40and44(state) {
 
 // es ist dreiviertel ...+1
 function between45and49(state) {
-	state.log.push("dreiviertel", "h+1")
-    state.leds.push(leds.pins.dreiviertel)
+    if (W.getQuarterToStrategy() === W.QuarterToStrategies.DREIVIERTEL) {
+        state.log.push("dreiviertel", "h+1")
+        state.leds.push(leds.pins.dreiviertel)
+    } else {
+        state.log.push("viertel", "vor", "h+1")
+        state.leds.push(leds.pins.viertel)
+        state.leds.push(leds.pins.vor)
+    }
+
     state.hour += 1
 }
 
