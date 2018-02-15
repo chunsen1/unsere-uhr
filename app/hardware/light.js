@@ -1,6 +1,7 @@
 const mcpadc = require('mcp-spi-adc')
 const MA = require('moving-average')
-const S = require('./settings')
+const S = require('../configuration/settings')
+const scale = require('../utils').scale
 
 // constants
 const output_min = 1
@@ -29,16 +30,6 @@ let lightSensor = mcpadc.open(0, { speedHz: 1350000 }, e => {
         })
     }, S.light.getReadInterval())
 })
-
-// scale function
-let scale = x => {
-    let y = output_min + (output_max - output_min) * (x - S.light.getMinimum()) / (S.light.getMaximum() - S.light.getMinimum())
-
-    y = Math.max(output_min, y)
-    y = Math.min(output_max, y)
-
-    return y
-}
 
 // brightness function
 let getBrightness = () => {

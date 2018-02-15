@@ -1,33 +1,9 @@
-const ws281x = require('rpi-ws281x-native')
-const light = require('./light')
+const range = require('../utils').range
 const LED_COUNT = 224
 
-ws281x.init(LED_COUNT)
+module.exports = {
+    getLedCount: () => LED_COUNT,
 
-let pixels = new Uint32Array(LED_COUNT)
-let getColour = () => 0xffffff
-
-let lightLeds = (indices) => {
-    indices
-	    .filter(x => !!x)
-        .reduce((acc, cur) => cur.concat(acc), [])
-        .forEach(x => pixels[x] = getColour(x))
-}
-
-let clearLeds = () => {
-    for (var i = 0; i < pixels.length; i += 1) {
-        pixels[i] = 0
-    }
-}
-
-let render = () => {
-    ws281x.setBrightness(light.getBrightness())
-    ws281x.render(pixels)
-}
-
-let range = (a, b) => Array.from(Array(b - a + 1), (x, i) => i + a) 
-
-const pins = {
     esIst: [1, 2, 3, 4, 7, 8, 9, 10, 11, 12],
 
     ein: range(128, 133),
@@ -59,12 +35,4 @@ const pins = {
     undZwei: [0, 23],
     undDrei: [0, 23, 200],
     undVier: [0, 23, 200, 223]
-}
-
-module.exports = {
-    lightleds: (data) => lightLeds(data),
-    pins: pins,
-
-    clear: () => clearLeds(),
-    render: () => render()
 }

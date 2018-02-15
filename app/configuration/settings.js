@@ -1,3 +1,5 @@
+const LED_COUNT = require('./led-layout').getLedCount()
+
 // brightness strategy
 const brightnessStrategies = {
     AMBIENT_LIGHT: 'AMBIENT_LIGHT',
@@ -13,9 +15,8 @@ let ambientLightMin = 0
 let ambientLightMax = 0.5
 let ambientLightReadInterval = 100 // needs restart
 
-// LED configuration
-const LED_COUNT = 224,
-      colors = new Uint32Array(LED_COUNT)
+// color configuration
+const colors = new Uint32Array(LED_COUNT)
 
 function setColors(values) {
     if (Array.isArray(values) && values.length === LED_COUNT) {

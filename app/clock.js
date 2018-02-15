@@ -1,5 +1,6 @@
-const leds = require('../utils/leds'),
-      timeMapping = require('./clock/timeMapping')
+const leds = require('./hardware/leds'),
+      LL = require('./configuration/led-layout'),
+      timeMapping = require('./clock/timeMapping'),
       state = require('./clock/helpers').state,
       is = require('./clock/helpers').is
 
@@ -13,7 +14,7 @@ module.exports = (dateTime) => {
     leds.clear()
 
     // determine which LEDs should be activated
-    state.leds.push(leds.pins.esIst)
+    state.leds.push(LL.esIst)
     timeMapping.setMinutes(state)
     timeMapping.setHours(state)
     timeMapping.setSmallMinutes(state)

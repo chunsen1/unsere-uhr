@@ -1,4 +1,4 @@
-const W = require('../../../utils/settings').words
+const W = require('../../configuration/settings').words
 
 const getWordSettings = (req, res) => res.status(200).json({
     Strategies: {

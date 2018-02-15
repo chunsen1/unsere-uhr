@@ -1,5 +1,7 @@
 const MF = require('./minutes'),
-      leds = require('../../utils/leds')
+      LL = require('../configuration/led-layout'),
+      state = require('./helpers').state,
+      is = require('./helpers').is
 
 function setMinutes(state) {
     is(state.minutes).between(0, 4).then(MF.between0and4)
@@ -19,28 +21,28 @@ function setMinutes(state) {
 function setHours(state) {
     let y = []
 
-    if (state.hour === 0 || state.hour === 12 || state.hour === 24) { y = leds.pins.zwoelf }
-    if (state.hour === 1 || state.hour === 13) { if (state.minutes < 5) { y = leds.pins.ein } else { y = leds.pins.eins } }
-    if (state.hour === 2 || state.hour === 14) { y = leds.pins.zwei }
-    if (state.hour === 3 || state.hour === 15) { y = leds.pins.drei }
-    if (state.hour === 4 || state.hour === 16) { y = leds.pins.vier }
-    if (state.hour === 5 || state.hour === 17) { y = leds.pins.fuenf }
-    if (state.hour === 6 || state.hour === 18) { y = leds.pins.sechs }
-    if (state.hour === 7 || state.hour === 19) { y = leds.pins.sieben }
-    if (state.hour === 8 || state.hour === 20) { y = leds.pins.acht }
-    if (state.hour === 9 || state.hour === 21) { y = leds.pins.neun }
-    if (state.hour === 10 || state.hour === 22) { y = leds.pins.zehn }
-    if (state.hour === 11 || state.hour === 23) { y = leds.pins.elf }
+    if (state.hour === 0 || state.hour === 12 || state.hour === 24) { y = LL.zwoelf }
+    if (state.hour === 1 || state.hour === 13) { if (state.minutes < 5) { y = LL.ein } else { y = LL.eins } }
+    if (state.hour === 2 || state.hour === 14) { y = LL.zwei }
+    if (state.hour === 3 || state.hour === 15) { y = LL.drei }
+    if (state.hour === 4 || state.hour === 16) { y = LL.vier }
+    if (state.hour === 5 || state.hour === 17) { y = LL.fuenf }
+    if (state.hour === 6 || state.hour === 18) { y = LL.sechs }
+    if (state.hour === 7 || state.hour === 19) { y = LL.sieben }
+    if (state.hour === 8 || state.hour === 20) { y = LL.acht }
+    if (state.hour === 9 || state.hour === 21) { y = LL.neun }
+    if (state.hour === 10 || state.hour === 22) { y = LL.zehn }
+    if (state.hour === 11 || state.hour === 23) { y = LL.elf }
 
     state.leds.push(y)
 }
 
 function setSmallMinutes(state) {
     switch (state.minutes % 5) {
-        case 1: state.leds.push(leds.pins.undEins); break;
-        case 2: state.leds.push(leds.pins.undZwei); break;
-        case 3: state.leds.push(leds.pins.undDrei); break;
-        case 4: state.leds.push(leds.pins.undVier); break;
+        case 1: state.leds.push(LL.undEins); break;
+        case 2: state.leds.push(LL.undZwei); break;
+        case 3: state.leds.push(LL.undDrei); break;
+        case 4: state.leds.push(LL.undVier); break;
         default: state.log.push("nothing")
     }
 }
