@@ -1,11 +1,7 @@
 const mcpadc = require('mcp-spi-adc')
 const MA = require('moving-average')
 const S = require('../configuration/settings')
-const scale = require('../utils').scale
-
-// constants
-const output_min = 1
-const output_max = 100
+const scale = require('../utils/scale')
 
 // module status
 let initialized = 0

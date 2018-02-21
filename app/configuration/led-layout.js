@@ -1,4 +1,4 @@
-const range = require('../utils').range
+const range = require('../utils/range')
 const LED_COUNT = 224
 
 module.exports = {

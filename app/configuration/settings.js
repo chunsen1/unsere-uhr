@@ -65,7 +65,11 @@ module.exports = {
         getStrategy: () => selectedStrategy,
         setStrategy: strategy => selectedStrategy = brightnessStrategies[strategy],
         getFixedValue: () => brightness,
-        setFixedValue: value => brightness = Math.min(Math.max(0, value), 100)
+        setFixedValue: value => brightness = Math.min(Math.max(0, value), 100),
+        outputRange: {
+            minimum: 1,
+            maximum: 100
+        }
     },
     color: {
         get: pixel => colors[pixel],

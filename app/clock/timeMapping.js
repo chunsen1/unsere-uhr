@@ -1,8 +1,12 @@
 const MF = require('./minutes'),
       LL = require('../configuration/led-layout'),
-      state = require('./helpers').state,
-      is = require('./helpers').is
+      is = require('../utils/is')
 
+/**
+ * Given the current time in the state object, this method sets the according LED pins (in the state.leds array) for 5 minute intervals.
+ * 
+ * @param {State} state The current state.
+ */
 function setMinutes(state) {
     is(state.minutes).between(0, 4).then(MF.between0and4)
     is(state.minutes).between(5, 9).then(MF.between5and9)
@@ -18,6 +22,11 @@ function setMinutes(state) {
     is(state.minutes).between(55, 59).then(MF.between55and59)
 }
 
+/**
+ * Given the current time in the state object, this method sets the according LED pins for the hour. This method needs to run after setMinutes()!
+ * 
+ * @param {State} state The current state.
+ */
 function setHours(state) {
     let y = []
 
@@ -37,6 +46,11 @@ function setHours(state) {
     state.leds.push(y)
 }
 
+/**
+ * Enables the LEDs for (state.minutes % 5)
+ * 
+ * @param {State} state 
+ */
 function setSmallMinutes(state) {
     switch (state.minutes % 5) {
         case 1: state.leds.push(LL.undEins); break;
@@ -47,6 +61,7 @@ function setSmallMinutes(state) {
     }
 }
 
+// exports
 module.exports = {
     setHours: setHours,
     setMinutes: setMinutes,

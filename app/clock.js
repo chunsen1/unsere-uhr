@@ -1,8 +1,8 @@
 const leds = require('./hardware/leds'),
       LL = require('./configuration/led-layout'),
       timeMapping = require('./clock/timeMapping'),
-      state = require('./clock/helpers').state,
-      is = require('./clock/helpers').is
+      state = require('./clock/state'),
+      is = require('./utils/is')
 
 module.exports = (dateTime) => {
     let date = dateTime ? dateTime : new Date(Date.now())
