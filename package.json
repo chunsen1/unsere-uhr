@@ -35,6 +35,7 @@
     "yargs": "^10.1.1"
   },
   "devDependencies": {
+    "chai": "^4.1.2",
     "mocha": "^5.0.0",
     "mockery": "^2.1.0"
   }
