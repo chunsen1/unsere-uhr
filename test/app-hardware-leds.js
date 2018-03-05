@@ -4,26 +4,33 @@ const assert = require('chai').assert,
       ws281x = require('./mocks/ws281x-native-mock'),
       mcpspiadc = require('./mocks/mcp-spi-adc')
 
+let leds = null
+
 before('enable mockery', () => {
+    // enable mockery
     mockery.enable({
         warnOnReplace: false,
         warnOnUnregistered: false
     })
-    mockery.registerMock('fs-mock', { stat: () => 3})
+
+    // register hardware mocks
     mockery.registerMock('rpi-ws281x-native', ws281x)
     mockery.registerMock('mcp-spi-adc', mcpspiadc)
+
+    // load module
+    leds = require('../app/hardware/leds')
 })
 
-describe('app/clock/state.js', () => {
-    it('should fulfill its contract', () => {
-        assert.property(state, 'leds')
-        assert.property(state, 'log')
-        assert.property(state, 'minutes')
-        assert.property(state, 'hour')
-        assert.property(state, 'initState')
-    })
+describe('app/hardware/leds.js', () => {
+    it('should light the correct leds')
 
-    it('should have a proper initialization function')
+    it('should be able to clear its internal state')
+
+    it('should be able to "render" its internal state')
+
+    it('should initialize the hardware correctly')
+
+    it('should clean up hardware state on exit')
 })
 
 after('disable mockery', () => mockery.disable())
