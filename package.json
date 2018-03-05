@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "test": "node ./node_modules/mocha/bin/mocha",
-    "serve": "sudo node app.js",
+    "service": "sudo node app.js",
+    "mock": "node ./test/utils/testApp.js",
     "iterate": "sudo node iterate_words.js"
   },
   "bugs": {
