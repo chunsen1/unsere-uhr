@@ -17,7 +17,7 @@ let pixels = new Uint32Array(LED_COUNT)
 
 let lightLeds = (indices) => {
     indices
-	    .filter(x => !!x)
+        .filter(x => !!x)
         .reduce((acc, cur) => acc.concat(cur), [])
         .forEach(x => pixels[x] = settings.color.get(x))
 }

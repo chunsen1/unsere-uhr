@@ -1,8 +1,13 @@
 // log function
-const log = (msg) => console.log(`[ws281x-mock] ${msg}`)
+const log = (msg) => {
+    if (logsEnabled) {
+        console.log(`[ws281x-mock] ${msg}`)
+    }
+}
 
 // variables
 let brightness = null,
+    logsEnabled = true,
     callbacks = {
         init: null,
         setBrightness: null,
@@ -42,5 +47,6 @@ module.exports = {
             callbacks.reset()
         }
     },
-    setCallbacks: (cb) => callbacks = cb
+    setCallbacks: (cb) => callbacks = cb,
+    setLogging: x => logsEnabled = !!x
 }
