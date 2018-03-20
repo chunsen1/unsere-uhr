@@ -1,5 +1,6 @@
 const assert = require('chai').assert,
       mockery = require('mockery'),
+      exitHookMock = require('./mocks/exit-hook-mock'),
       state = require('../app/clock/state'),
       ws281x = require('./mocks/ws281x-native-mock'),
       mcpspiadc = require('./mocks/mcp-spi-adc'),
@@ -19,6 +20,7 @@ before('enable mockery', () => {
     mockery.registerMock('rpi-ws281x-native', ws281x)
     mockery.registerMock('mcp-spi-adc', mcpspiadc)
     mockery.registerMock('../configuration/settings', settings)
+    mockery.registerMock('exit-hook', exitHookMock.mock)
 
     // store LED-count on module initialization
     ws281x.setCallbacks({
@@ -87,7 +89,20 @@ describe('app/hardware/leds.js', () => {
         assert.equal(ledCount, require('../app/configuration/led-layout').getLedCount())
     })
 
-    it('should clean up hardware state on exit')
+    it('should clean up hardware state on exit', () => {
+        let resultWasCleanedUp = false
+
+        // mock reset callback on ws281x and use as resolver
+        ws281x.setCallbacks({
+            reset: () => resultWasCleanedUp = true
+        })
+
+        // act
+        exitHookMock.mockExit()
+
+        // assert
+        assert.isTrue(resultWasCleanedUp)
+    })
 })
 
 after('disable mockery', () => mockery.disable())

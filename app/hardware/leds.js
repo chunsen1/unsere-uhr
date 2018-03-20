@@ -1,13 +1,11 @@
 const ws281x = require('rpi-ws281x-native')
+const exitHook = require('exit-hook')
 const light = require('./light')
 const settings = require('../configuration/settings')
 const LED_COUNT = require('../configuration/led-layout').getLedCount()
 
 // reset LEDs on exit
-process.on('SIGINT', () => {
-    ws281x.reset()
-    process.nextTick(() => process.exit(0))
-})
+exitHook(ws281x.reset)
 
 // initialize the LED strip
 ws281x.init(LED_COUNT)
