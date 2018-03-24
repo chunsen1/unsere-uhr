@@ -1,13 +1,11 @@
 const ws281x = require('rpi-ws281x-native')
+const exitHook = require('exit-hook')
 const light = require('./light')
 const settings = require('../configuration/settings')
 const LED_COUNT = require('../configuration/led-layout').getLedCount()
 
 // reset LEDs on exit
-process.on('SIGINT', () => {
-    ws281x.reset()
-    process.nextTick(() => process.exit(0))
-})
+exitHook(ws281x.reset)
 
 // initialize the LED strip
 ws281x.init(LED_COUNT)
@@ -17,7 +15,7 @@ let pixels = new Uint32Array(LED_COUNT)
 
 let lightLeds = (indices) => {
     indices
-	    .filter(x => !!x)
+        .filter(x => !!x)
         .reduce((acc, cur) => acc.concat(cur), [])
         .forEach(x => pixels[x] = settings.color.get(x))
 }
