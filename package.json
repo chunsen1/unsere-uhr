@@ -1,6 +1,6 @@
 {
   "name": "unsere-uhr",
-  "version": "1.0.0-alpha.4",
+  "version": "1.0.0-alpha.5",
   "description": "Code für unsere Uhr",
   "main": "app.js",
   "scripts": {
@@ -26,6 +26,7 @@
   ],
   "dependencies": {
     "body-parser": "^1.18.2",
+    "cors": "^2.8.5",
     "exit-hook": "^1.1.1",
     "express": "^4.16.2",
     "later": "^1.2.0",

@@ -1,5 +1,6 @@
 const express = require('express'),
       bodyParser = require('body-parser'),
+      cors = require('cors'),
       routesLight = require('./routes/light'),
       routesBrightness = require('./routes/brightness'),
       routesColor = require('./routes/color'),
@@ -11,6 +12,7 @@ function startServer(port) {
 
     // middleware
     app.use(bodyParser.json())
+    app.use(cors())
 
     // routes: ambient light sensor settings
     app.get('/settings/light/', routesLight.getLight)
