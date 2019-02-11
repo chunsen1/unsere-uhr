@@ -1,12 +1,12 @@
 {
   "name": "unsere-uhr",
-  "version": "1.0.0-alpha.5",
+  "version": "1.0.0-alpha.6",
   "description": "Code für unsere Uhr",
   "main": "app.js",
   "scripts": {
     "test": "node ./node_modules/mocha/bin/mocha",
     "service": "sudo node app.js",
-    "mock": "node ./test/utils/testApp.js",
+    "mock": "node ./test/utils/testApp.js -p 8081",
     "iterate": "sudo node iterate_words.js"
   },
   "bugs": {
