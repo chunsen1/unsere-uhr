@@ -76,7 +76,7 @@ const setWordStrategies = (req, res) => {
     ) {
         W.setOClockStrategy(req.body.oClockStrategy)
         W.setQuarterPastStrategy(req.body.quarterPastStrategy)
-        W.setQuarterToStrategy(req.body.setQuarterToStrategy)
+        W.setQuarterToStrategy(req.body.quarterToStrategy)
 
         res.status(200).json({
             success: true,
