@@ -33,6 +33,7 @@ let render = () => {
 
 module.exports = {
     lightLeds: (data) => lightLeds(data),
+    getStatus: () => pixels,
     clear: () => clearLeds(),
     render: () => render()
 }

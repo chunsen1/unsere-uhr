@@ -4,7 +4,8 @@ const express = require('express'),
       routesLight = require('./routes/light'),
       routesBrightness = require('./routes/brightness'),
       routesColor = require('./routes/color'),
-      routesText = require('./routes/text')
+      routesText = require('./routes/text'),
+      clockStatus = require('./routes/clockStatus')
 
 function startServer(port) {
     // initialize express
@@ -32,6 +33,12 @@ function startServer(port) {
     // routes: text settings
     app.get('/settings/text', routesText.getWordSettings)
     app.put('/settings/text', routesText.setWordStrategies)
+
+    // routes: clock status
+    app.get('/status/clock', clockStatus.getClockStatus)
+    app.get('/status/hardware', clockStatus.getHardwareStatus)
+    app.get('/status/os', clockStatus.getOSStatus)
+
 
     // start server
     app.listen(port, () => console.log(`\r\n The server is running on localhost:${port}`))
