@@ -36,9 +36,9 @@ function startServer(port) {
 
     // routes: clock status
     app.get('/status/clock', clockStatus.getClockStatus)
+    app.get('/settings/led-layout', clockStatus.getLedLayout)
     app.get('/status/hardware', clockStatus.getHardwareStatus)
     app.get('/status/os', clockStatus.getOSStatus)
-
 
     // start server
     app.listen(port, () => console.log(`\r\n The server is running on localhost:${port}`))
