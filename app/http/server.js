@@ -16,10 +16,8 @@ function startServer(port) {
     app.use(cors())
 
     // routes: ambient light sensor settings
-    app.get('/settings/light/', routesLight.getLight)
-    app.put('/settings/light/time-span', routesLight.setTimeSpan)
-    app.put('/settings/light/minimum', routesLight.setMinimum)
-    app.put('/settings/light/maximum', routesLight.setMaximum)
+    app.get('/settings/light', routesLight.getLight)
+    app.put('/settings/light', routesLight.setLight)
 
     // routes: brightness settings
     app.get('/settings/brightness/', routesBrightness.getBrightness)
