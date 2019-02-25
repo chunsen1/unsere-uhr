@@ -6,28 +6,43 @@ const getBrightness = (req, res) => res.status(200).json({
     fixedValue: settings.brightness.getFixedValue()
 })
 
-const setStrategy = (req, res) => {
-    if (req.body 
-        && req.body.strategy
-        && settings.brightness.STRATEGIES.some(x => x === req.body.strategy)) {
-        settings.brightness.setStrategy(req.body.strategy)
-        res.status(200).json({ success: true })
+const setStrategy = (value) => {
+    if (value
+        && settings.brightness.STRATEGIES[value]) {
+        settings.brightness.setStrategy(value)
+        return { success: true }
     } else {
-        res.status(400).json({ success: false })
+        return { success: false }
     }
 }
 
-const setFixedValue = (req, res) => {
-    if (req.body && req.body.value && Number.isSafeInteger(req.body.value)) {
-        settings.brightness.setFixedValue(req.body.value)
-        res.status(200).json({ success: true})
+const setFixedValue = (value) => {
+    if (value && Number.isSafeInteger(value)) {
+        settings.brightness.setFixedValue(value)
+        return { success: true }
+    }
+    
+    return { success: false }
+}
+
+function setBrightness(req, res) {
+    if (req && req.body && req.body.strategy && req.body.fixedValue) {
+        let result = {}
+
+        result.fixedValue = setFixedValue(req.body.fixedValue)
+        result.strategy = setStrategy(req.body.strategy)
+        result.success = result.fixedValue.success && result.strategy.success
+
+        res.status(result.success ? 200 : 400).json(result)
     } else {
-        res.status(400).json({ success: false})
+        res.status(400).json({
+            success: false,
+            message: 'Cannot parse body.'
+        })
     }
 }
 
 module.exports = {
     getBrightness: getBrightness,
-    setStrategy: setStrategy,
-    setFixedValue: setFixedValue
+    setBrightness: setBrightness
 }

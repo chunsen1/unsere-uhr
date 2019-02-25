@@ -20,9 +20,8 @@ function startServer(port) {
     app.put('/settings/light', routesLight.setLight)
 
     // routes: brightness settings
-    app.get('/settings/brightness/', routesBrightness.getBrightness)
-    app.put('/settings/brightness/strategy', routesBrightness.setStrategy)
-    app.put('/settings/brightness/fixed-value', routesBrightness.setFixedValue)
+    app.get('/settings/brightness', routesBrightness.getBrightness)
+    app.put('/settings/brightness', routesBrightness.setBrightness)
 
     // routes: color settings
     app.get('/settings/color', routesColor.getColor)

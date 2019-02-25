@@ -112,7 +112,7 @@ function setLight(req, res) {
     } else {
         res.status(400).json({
             success: false,
-            message: `Your content does not appear to be valid.`
+            message: 'Your content does not appear to be valid.'
         })
     }
 }
