@@ -2,6 +2,7 @@ const mcpadc = require('mcp-spi-adc')
 const MA = require('moving-average')
 const S = require('../configuration/settings')
 const scale = require('../utils/scale')
+const VB = require('../utils/value-buffer')
 
 // module status
 let initialized = 0
@@ -23,6 +24,7 @@ let lightSensor = mcpadc.open(0, { speedHz: 1350000 }, e => {
             if (err) throw err;
             
             average.push(Date.now(), reading.value)
+            VB.pushValue(reading.value)
         })
     }, S.light.getReadInterval())
 })

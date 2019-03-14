@@ -15,9 +15,10 @@ function startServer(port) {
     app.use(bodyParser.json())
     app.use(cors())
 
-    // routes: ambient light sensor settings
+    // routes: ambient light sensor
     app.get('/settings/light', routesLight.getLight)
     app.put('/settings/light', routesLight.setLight)
+    app.get('/light', routesLight.readAmbientLight)
 
     // routes: brightness settings
     app.get('/settings/brightness', routesBrightness.getBrightness)

@@ -1,4 +1,5 @@
 const settings = require('../../configuration/settings')
+const VB = require('../../utils/value-buffer')
 
 const getLight = (req, res) => res.status(200).json({ 
     timeSpan: settings.light.getTimeSpan(),
@@ -117,7 +118,10 @@ function setLight(req, res) {
     }
 }
 
+function readAmbientLight(req, res) {
+    res.status(200).json(VB.getStatus())
+}
+
 module.exports = {
-    getLight: getLight,
-    setLight: setLight
+    getLight, setLight, readAmbientLight
 }
