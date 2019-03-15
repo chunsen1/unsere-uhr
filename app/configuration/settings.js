@@ -48,6 +48,18 @@ let quarterPastStrategy = quarterPastStrategies.VIERTEL
 let quarterToStrategy = quarterToStrategies.DREIVIERTEL
 let oClockStrategy = oClockStrategies.MIT_UHR
 
+// schedule
+const schedule = [
+    {
+        startDay: 0,
+        startTime: '00:00:00',
+        endDay: 6,
+        endTime: '24:00:00',
+        color: null,
+        brightness: brightnessStrategies.AMBIENT_LIGHT
+    }
+]
+
 // exports
 module.exports = {
     light: {
@@ -105,5 +117,6 @@ module.exports = {
                 throw new TypeError(`'${value}' is not an accepted value for this property`)
             }
         }
-    }
+    },
+    schedule: schedule
 }
