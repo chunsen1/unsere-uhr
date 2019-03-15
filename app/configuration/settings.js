@@ -4,7 +4,8 @@ const LED_COUNT = require('./led-layout').getLedCount()
 const brightnessStrategies = {
     AMBIENT_LIGHT: 'AMBIENT_LIGHT',
     FIXED_VALUE: 'FIXED_VALUE',
-    SCHEDULE: 'SCHEDULE'
+    SCHEDULE: 'SCHEDULE',
+    SCHEDULE_AMBIENT: 'SCHEDULE_AMBIENT'
 } 
 let selectedStrategy = brightnessStrategies.AMBIENT_LIGHT
 let brightness = 60
@@ -52,11 +53,11 @@ let oClockStrategy = oClockStrategies.MIT_UHR
 const schedule = [
     {
         startDay: 0,
-        startTime: '00:00:00',
+        startTime: { h: 0, m: 0, s: 0},
         endDay: 6,
-        endTime: '24:00:00',
+        endTime: { h: 24, m: 0, s: 0},
         color: null,
-        brightness: brightnessStrategies.AMBIENT_LIGHT
+        brightness: 60
     }
 ]
 
@@ -87,7 +88,8 @@ module.exports = {
         get: pixel => colors[pixel],
         set: (pixel, value) => colors[pixel] = value,
         getAll: () => colors,
-        setAll: (values) => setColors(values)
+        setAll: (values) => setColors(values),
+        setAllUniform: (value) => setColors(Array.from(new Array(LED_COUNT), () => value))
     },
     words: {
         QuarterPastStrategies: quarterPastStrategies,
