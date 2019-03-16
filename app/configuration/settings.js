@@ -44,10 +44,16 @@ const oClockStrategies = {
     MIT_UHR: 'MIT_UHR',
     OHNE_UHR: 'OHNE_UHR'
 }
+const itIsStrategies = {
+    IMMER: 'IMMER',
+    VOLLE_STUNDE: 'VOLLE_STUNDE',
+    NIE: 'NIE'
+}
 
 let quarterPastStrategy = quarterPastStrategies.VIERTEL
 let quarterToStrategy = quarterToStrategies.DREIVIERTEL
 let oClockStrategy = oClockStrategies.MIT_UHR
+let itIsStrategy = itIsStrategies.VOLLE_STUNDE
 
 // schedule
 const schedule = [
@@ -95,9 +101,11 @@ module.exports = {
         QuarterPastStrategies: quarterPastStrategies,
         QuarterToStrategies: quarterToStrategies,
         OClockStrategies: oClockStrategies,
+        ItIsStrategies: itIsStrategies,
         getQuarterPastStrategy: () => quarterPastStrategy,
         getQuarterToStrategy: () => quarterToStrategy,
         getOClockStrategy: () => oClockStrategy,
+        getItIsStrategy: () => itIsStrategy,
         setQuarterPastStrategy: (value) => {
             if (Object.values(quarterPastStrategies).indexOf(value) > -1) {
                 quarterPastStrategy = value
@@ -115,6 +123,13 @@ module.exports = {
         setOClockStrategy: (value) => {
             if (Object.values(oClockStrategies).indexOf(value) > -1) {
                 oClockStrategy = value
+            } else {
+                throw new TypeError(`'${value}' is not an accepted value for this property`)
+            }
+        },
+        setItIsStrategy: (value) => {
+            if (Object.values(itIsStrategies).indexOf(value) > -1) {
+                itIsStrategy = value
             } else {
                 throw new TypeError(`'${value}' is not an accepted value for this property`)
             }

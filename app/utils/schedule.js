@@ -22,6 +22,7 @@ function determineScheduleItem(day, hour, minute, second) {
                 .between(
                     toSeconds(x.startDay, x.startTime.h, x.startTime.m, x.startTime.s), 
                     toSeconds(x.endDay, x.endTime.h, x.endTime.m, x.endTime.s))
+                .then(() => true)
     })
 }
 

@@ -1,4 +1,5 @@
 const MF = require('./minutes'),
+      W = require('../configuration/settings').words,
       LL = require('../configuration/led-layout'),
       is = require('../utils/is')
 
@@ -61,9 +62,16 @@ function setSmallMinutes(state) {
     }
 }
 
+function setItIs(state) {
+    if (
+        (W.getItIsStrategy() === W.ItIsStrategies.IMMER) ||
+        (W.getItIsStrategy() === W.ItIsStrategies.VOLLE_STUNDE && is(state.minutes).between(0, 4).then(() => true))
+    ) {
+        state.leds.push(LL.esIst)
+    }
+}
+
 // exports
 module.exports = {
-    setHours: setHours,
-    setMinutes: setMinutes,
-    setSmallMinutes: setSmallMinutes
+    setHours, setMinutes, setSmallMinutes, setItIs
 }

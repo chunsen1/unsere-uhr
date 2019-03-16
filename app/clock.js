@@ -1,8 +1,6 @@
 const leds = require('./hardware/leds'),
-      LL = require('./configuration/led-layout'),
       timeMapping = require('./clock/timeMapping'),
       state = require('./clock/state'),
-      is = require('./utils/is'),
       schedule = require('./utils/schedule')
 
 module.exports = (dateTime) => {
@@ -14,12 +12,12 @@ module.exports = (dateTime) => {
     // clear old LED states
     leds.clear()
 
-    // check schedule
+    // check schedule (might influence brightness and color settings)
     const active = schedule.applySchedule(date.getDay(), date.getHours(), date.getMinutes(), date.getSeconds())
 
     // determine which LEDs should be activated
     if (active) {
-        state.leds.push(LL.esIst)
+        timeMapping.setItIs(state)
         timeMapping.setMinutes(state)
         timeMapping.setHours(state)
         timeMapping.setSmallMinutes(state)
