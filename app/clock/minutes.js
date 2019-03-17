@@ -43,10 +43,11 @@ function between20and24(state) {
         state.leds.push(LL.mZwanzig)
         state.leds.push(LL.nach)
     } else {
-        state.log.push("zehn vor halb")
+        state.log.push("zehn", "vor", "halb", "h+1")
         state.leds.push(LL.mZehn)
         state.leds.push(LL.vor)
         state.leds.push(LL.halb)
+        state.hour += 1
     }
 }
 
@@ -83,10 +84,11 @@ function between40and44(state) {
         state.leds.push(LL.vor)
         state.hour += 1
     } else {
-        state.log.push("zehn nach halb")
+        state.log.push("zehn", "nach", "halb", "h+1")
         state.leds.push(LL.mZehn)
         state.leds.push(LL.nach)
         state.leds.push(LL.halb)
+        state.hour += 1
     }
 }
 
