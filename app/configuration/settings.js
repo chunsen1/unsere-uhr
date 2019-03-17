@@ -49,11 +49,21 @@ const itIsStrategies = {
     VOLLE_STUNDE: 'VOLLE_STUNDE',
     NIE: 'NIE'
 }
+const twentyMinutesStrategies = {
+    ZWANZIG_NACH: 'ZWANZIG_NACH',
+    ZEHN_VOR_HALB: 'ZEHN_VOR_HALB'
+}
+const fourtyMinutesStrategies = {
+    ZWANZIG_VOR: 'ZWANZIG_VOR',
+    ZEHN_NACH_HALB: 'ZEHN_NACH_HALB'
+}
 
 let quarterPastStrategy = quarterPastStrategies.VIERTEL
 let quarterToStrategy = quarterToStrategies.DREIVIERTEL
 let oClockStrategy = oClockStrategies.MIT_UHR
 let itIsStrategy = itIsStrategies.VOLLE_STUNDE
+let twentyMinutesStrategy = twentyMinutesStrategies.ZWANZIG_NACH
+let fourtyMinutesStrategy = fourtyMinutesStrategies.ZWANZIG_VOR
 
 // schedule
 const schedule = [
@@ -102,10 +112,14 @@ module.exports = {
         QuarterToStrategies: quarterToStrategies,
         OClockStrategies: oClockStrategies,
         ItIsStrategies: itIsStrategies,
+        TwentyMinutesStrategies: twentyMinutesStrategies,
+        FourtyMinutesStrategies: fourtyMinutesStrategies,
         getQuarterPastStrategy: () => quarterPastStrategy,
         getQuarterToStrategy: () => quarterToStrategy,
         getOClockStrategy: () => oClockStrategy,
         getItIsStrategy: () => itIsStrategy,
+        getTwentyMinutesStrategy: () => twentyMinutesStrategy,
+        getFourtyMinutesStrategy: () => fourtyMinutesStrategy,
         setQuarterPastStrategy: (value) => {
             if (Object.values(quarterPastStrategies).indexOf(value) > -1) {
                 quarterPastStrategy = value
@@ -130,6 +144,20 @@ module.exports = {
         setItIsStrategy: (value) => {
             if (Object.values(itIsStrategies).indexOf(value) > -1) {
                 itIsStrategy = value
+            } else {
+                throw new TypeError(`'${value}' is not an accepted value for this property`)
+            }
+        },
+        setTwentyMinutesStrategy: (value) => {
+            if (Object.values(twentyMinutesStrategies).indexOf(value) > -1) {
+                twentyMinutesStrategy = value
+            } else {
+                throw new TypeError(`'${value}' is not an accepted value for this property`)
+            }
+        },
+        setFourtyMinutesStrategy: (value) => {
+            if (Object.values(fourtyMinutesStrategies).indexOf(value) > -1) {
+                fourtyMinutesStrategy = value
             } else {
                 throw new TypeError(`'${value}' is not an accepted value for this property`)
             }

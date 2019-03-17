@@ -36,11 +36,18 @@ function between15and19(state) {
     }
 }
 
-// es ist zwanzig nach ...
+// es ist zwanzig nach ... / zehn vor halb
 function between20and24(state) {
-    state.log.push("zwanzig", "nach")
-    state.leds.push(LL.mZwanzig)
-    state.leds.push(LL.nach)
+    if (W.getTwentyMinutesStrategy() === W.TwentyMinutesStrategies.ZWANZIG_NACH) {
+        state.log.push("zwanzig", "nach")
+        state.leds.push(LL.mZwanzig)
+        state.leds.push(LL.nach)
+    } else {
+        state.log.push("zehn vor halb")
+        state.leds.push(LL.mZehn)
+        state.leds.push(LL.vor)
+        state.leds.push(LL.halb)
+    }
 }
 
 // es ist 5 vor halb ...+1
@@ -68,12 +75,19 @@ function between35and39(state) {
     state.hour += 1
 }
 
-// es ist 20 vor ...+1
+// es ist 20 vor ...+1 / zehn nach halb
 function between40and44(state) {
-	state.log.push("zwanzig", "vor", "h+1")
-    state.leds.push(LL.mZwanzig)
-    state.leds.push(LL.vor)
-    state.hour += 1
+    if (W.getFourtyMinutesStrategy() === W.FourtyMinutesStrategies.ZWANZIG_VOR) {
+        state.log.push("zwanzig", "vor", "h+1")
+        state.leds.push(LL.mZwanzig)
+        state.leds.push(LL.vor)
+        state.hour += 1
+    } else {
+        state.log.push("zehn nach halb")
+        state.leds.push(LL.mZehn)
+        state.leds.push(LL.nach)
+        state.leds.push(LL.halb)
+    }
 }
 
 // es ist dreiviertel ...+1
