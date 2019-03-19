@@ -8,8 +8,8 @@
 // [ ] party-mode bis zum nächsten intervall
 // [ ] regenbogen
 
-// [ ] es ist nur zur vollen stunde
-// [ ] 10 vor/nach halb
+// [x] es ist nur zur vollen stunde
+// [x] 10 vor/nach halb
 
 const settings = require('../configuration/settings')
 const is = require('./is')

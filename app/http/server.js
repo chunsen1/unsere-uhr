@@ -5,7 +5,8 @@ const express = require('express'),
       routesBrightness = require('./routes/brightness'),
       routesColor = require('./routes/color'),
       routesText = require('./routes/text'),
-      clockStatus = require('./routes/clockStatus')
+      clockStatus = require('./routes/clockStatus'),
+      routesSchedule = require('./routes/schedule')
 
 function startServer(port) {
     // initialize express
@@ -31,6 +32,10 @@ function startServer(port) {
     // routes: text settings
     app.get('/settings/text', routesText.getWordSettings)
     app.put('/settings/text', routesText.setWordStrategies)
+
+    // routes: schedule
+    app.get('/settings/schedule', routesSchedule.getSchedule)
+    app.put('/settings/schedule', routesSchedule.setSchedule)
 
     // routes: clock status
     app.get('/status/clock', clockStatus.getClockStatus)
