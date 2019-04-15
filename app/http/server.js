@@ -44,8 +44,6 @@ function startServer(port) {
 
     // start server
     http.listen(port, () => console.log(`\r\n The server is running on localhost:${port}`))
-
-    io.on('connection', () => console.log('socket.io -> connection'))
 }
 
 module.exports = {
