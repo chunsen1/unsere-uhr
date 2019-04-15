@@ -1,4 +1,6 @@
-const express = require('express'),
+const app = require('express')(),
+      http = require('http').Server(app),
+      io = require('socket.io')(http),
       bodyParser = require('body-parser'),
       cors = require('cors'),
       routesLight = require('./routes/light'),
@@ -9,9 +11,6 @@ const express = require('express'),
       routesSchedule = require('./routes/schedule')
 
 function startServer(port) {
-    // initialize express
-    const app = express()
-
     // middleware
     app.use(bodyParser.json())
     app.use(cors())
@@ -44,7 +43,9 @@ function startServer(port) {
     app.get('/status/os', clockStatus.getOSStatus)
 
     // start server
-    app.listen(port, () => console.log(`\r\n The server is running on localhost:${port}`))
+    http.listen(port, () => console.log(`\r\n The server is running on localhost:${port}`))
+
+    io.on('connection', () => console.log('socket.io -> connection'))
 }
 
 module.exports = {
