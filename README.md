@@ -1,5 +1,26 @@
 # unsere-uhr
 
+## Bauteile
+
+### Elektronik
+
+* LLV Steckernetzteil
+* Steckdose für Netzteil
+* LED-Licherkette
+* Raspberry Pi
+* Lichtsensor
+* Litzen, Kabel
+* verschiedene Elektronik (@Sven, @Christian A.)
+
+### Gehäuse
+
+* Stahlfrontplatte
+* Holz (Rahmen, Rückwand, Abtrennung)
+* Winkel für Wandbefestigung
+* Montagekleber
+* Magnete (supermagnete.de S-10-20-N Stabmagnet Ø 10 mm, Höhe 20 mm, Neodym, N45, vernickelt)
+* Ballistol, um den Rost zu stoppen https://www.amazon.de/dp/B005VCNC52/ref=cm_sw_r_wa_awdo_t1_I.boAbRNR6019
+
 ## Uhr installieren
 
 * Raspbian Lite herunterladen
