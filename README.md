@@ -7,7 +7,8 @@
 * LLV Steckernetzteil
 * Steckdose für Netzteil
 * LED-Licherkette
-* Raspberry Pi
+* Raspberry Pi Nano
+* SD-Karte
 * Lichtsensor
 * Litzen, Kabel
 * verschiedene Elektronik (@Sven, @Christian A.)
