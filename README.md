@@ -16,7 +16,7 @@
 ### Gehäuse
 
 * Stahlfrontplatte
-* Holz (Rahmen, Rückwand, Abtrennung)
+* Holz (Rahmen, Rückwand, Abtrennung) oder https://www.ikea.com/de/de/p/ribba-rahmen-weiss-20378440/
 * Winkel für Wandbefestigung
 * Montagekleber
 * Magnete (supermagnete.de S-10-20-N Stabmagnet Ø 10 mm, Höhe 20 mm, Neodym, N45, vernickelt)
