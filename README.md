@@ -4,12 +4,14 @@
 
 ### Elektronik
 
-* LLV Steckernetzteil
+* 12 VLLV Steckernetzteil
 * Steckdose für Netzteil
-* LED-Licherkette
-* Raspberry Pi Nano
+* ~10A DCDC von 12V auf 5V Wandler
+* LED-Licherkette (30/60/144 RGB LED Strip mit WS2812B 5050 SMD)
+* Raspberry Pi Nano v3 mit WLAN
 * SD-Karte
-* Lichtsensor
+* 50-100k Ohm Lichtsensor
+* 1M Ohm Widerstände
 * Litzen, Kabel
 * verschiedene Elektronik (@Sven, @Christian A.)
 
