@@ -18,9 +18,11 @@
 ### Gehäuse
 
 * Stahlfrontplatte
-*  Außenmaß: 50cm, Innenmaß: 45,5cm, Abstand Eck-LEDs zueinander: 45cm
+  * Außenmaß: 50cm
+  * Abstand Eck-LEDs zueinander: 45cm
 * Holz (Rahmen, Rückwand, Abtrennung) oder https://www.ikea.com/de/de/p/ribba-rahmen-weiss-20378440/
-*  Gehäuse Außenmaß: 49cm
+  * Gehäuse Außenmaß: 49cm
+  * Innenmaß: 45,5cm
 * Winkel für Wandbefestigung
 * Montagekleber
 * Magnete (supermagnete.de S-10-20-N Stabmagnet Ø 10 mm, Höhe 20 mm, Neodym, N45, vernickelt)
