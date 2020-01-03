@@ -1,8 +1,10 @@
-const app = require('express')(),
+const express = require('express'),
+      app = express(),
       http = require('http').Server(app),
       io = require('socket.io')(http),
       bodyParser = require('body-parser'),
       cors = require('cors'),
+      historyFallback = require('connect-history-api-fallback'),
       routesLight = require('./routes/light'),
       routesBrightness = require('./routes/brightness'),
       routesColor = require('./routes/color'),
@@ -13,34 +15,42 @@ const app = require('express')(),
 function startServer(port) {
     // middleware
     app.use(bodyParser.json())
-    app.use(cors())
+    // app.use(cors())
+
+    let prefix = '/api'
 
     // routes: ambient light sensor
-    app.get('/settings/light', routesLight.getLight)
-    app.put('/settings/light', routesLight.setLight)
-    app.get('/light', routesLight.readAmbientLight)
+    app.get(prefix + '/settings/light', routesLight.getLight)
+    app.put(prefix + '/settings/light', routesLight.setLight)
+    app.get(prefix + '/light', routesLight.readAmbientLight)
 
     // routes: brightness settings
-    app.get('/settings/brightness', routesBrightness.getBrightness)
-    app.put('/settings/brightness', routesBrightness.setBrightness)
+    app.get(prefix + '/settings/brightness', routesBrightness.getBrightness)
+    app.put(prefix + '/settings/brightness', routesBrightness.setBrightness)
 
     // routes: color settings
-    app.get('/settings/color', routesColor.getColor)
-    app.put('/settings/color', routesColor.setColor)
+    app.get(prefix + '/settings/color', routesColor.getColor)
+    app.put(prefix + '/settings/color', routesColor.setColor)
 
     // routes: text settings
-    app.get('/settings/text', routesText.getWordSettings)
-    app.put('/settings/text', routesText.setWordStrategies)
+    app.get(prefix + '/settings/text', routesText.getWordSettings)
+    app.put(prefix + '/settings/text', routesText.setWordStrategies)
 
     // routes: schedule
-    app.get('/settings/schedule', routesSchedule.getSchedule)
-    app.put('/settings/schedule', routesSchedule.setSchedule)
+    app.get(prefix + '/settings/schedule', routesSchedule.getSchedule)
+    app.put(prefix + '/settings/schedule', routesSchedule.setSchedule)
 
     // routes: clock status
-    app.get('/status/clock', clockStatus.getClockStatus)
-    app.get('/settings/led-layout', clockStatus.getLedLayout)
-    app.get('/status/hardware', clockStatus.getHardwareStatus)
-    app.get('/status/os', clockStatus.getOSStatus)
+    app.get(prefix + '/status/clock', clockStatus.getClockStatus)
+    app.get(prefix + '/settings/led-layout', clockStatus.getLedLayout)
+    app.get(prefix + '/status/hardware', clockStatus.getHardwareStatus)
+    app.get(prefix + '/status/os', clockStatus.getOSStatus)
+
+    // history API handling
+    app.use(historyFallback())
+
+    // add ui
+    app.use(express.static('node_modules/unsere-uhr-ui/dist'))
 
     // start server
     http.listen(port, () => console.log(`\r\n The server is running on localhost:${port}`))
