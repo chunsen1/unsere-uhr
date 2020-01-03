@@ -1,5 +1,33 @@
 # unsere-uhr
 
+## Bauteile
+
+### Elektronik
+
+* 12 VLLV Steckernetzteil
+* Steckdose für Netzteil
+* ~10A DCDC von 12V auf 5V Wandler
+* LED-Licherkette (30/60/144 RGB LED Strip mit WS2812B 5050 SMD)
+* Raspberry Pi Nano v3 mit WLAN
+* SD-Karte
+* 50-100k Ohm Lichtsensor
+* 1M Ohm Widerstände
+* Litzen, Kabel
+* verschiedene Elektronik (@Sven, @Christian A.)
+
+### Gehäuse
+
+* Stahlfrontplatte
+  * Außenmaß: 50cm
+  * Abstand Eck-LEDs zueinander: 45cm
+* Holz (Rahmen, Rückwand, Abtrennung) oder https://www.ikea.com/de/de/p/ribba-rahmen-weiss-20378440/
+  * Gehäuse Außenmaß: 49cm
+  * Innenmaß: 45,5cm
+* Winkel für Wandbefestigung
+* Montagekleber
+* Magnete (supermagnete.de S-10-20-N Stabmagnet Ø 10 mm, Höhe 20 mm, Neodym, N45, vernickelt)
+* Ballistol, um den Rost zu stoppen https://www.amazon.de/dp/B005VCNC52/ref=cm_sw_r_wa_awdo_t1_I.boAbRNR6019
+
 ## Uhr installieren
 
 * Raspbian Lite herunterladen
