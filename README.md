@@ -101,13 +101,17 @@ npm install
 
 ### Bootscript einfügen
 
-rc.local bearbeiten 
+> Diese Prozedur sollten wir mit [PM2](https://github.com/Unitech/pm2) vereinfachen, da die jetzige Variante nicht zuverlässig funktioniert.
+
+rc.local bearbeiten:
 
 ```bash
 sudo nano /etc/rc.local
 ```
 
-```sudo /usr/local/bin/node /home/pi/unsere-uhr/app.js``` vor ```exit 0``` eintragen
+Folgendes in diese Datei eintragen (als Zeile vor ```exit 0```)
+
+> ```sudo /usr/local/bin/node /home/pi/unsere-uhr/app.js```
 
 ### Bei Zeitproblemen
 * sudo raspi-config -> Localization -> Zeitzone -> Europa -> Berlin
