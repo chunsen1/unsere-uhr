@@ -30,8 +30,8 @@
 
 ## Uhr installieren
 
-* Raspbian Lite herunterladen
-* Mit Tool wie Etcher SD-Karte flashen
+* Raspberry Pi OS (previously called Raspbian) [herunterladen](https://www.raspberrypi.org/downloads/raspberry-pi-os/)
+* Mit Tool wie Etcher SD-Karte oder [Raspberry Pi Imager](https://www.raspberrypi.org/downloads/) flashen
 * W-Lan Verbindung konfigurieren
 * SSH aktivieren (auf der SD-Speicherkarte in der Boot-Partition eine leere Datei mit dem Namen "ssh" erstellen)
 * Raspbian aktualisieren 
