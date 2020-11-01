@@ -61,19 +61,19 @@ PS: die Datei wpa_supplicant.conf wird bei jedem Bootvorgang wegkopiert, wenn es
 * WPA2 Netzwerke benötigen ggfs. weitere Einstellungen. Verwendet in diesem Fall bitte [diese Datei](documentation/etc/wpa_supplicant.conf2) und speichert sie als ```wpa_supplicant.conf```
 
 ### Passwort ändern
-```sudo raspi-config```
+```sudo raspi-config```  
 Dann im Menü den Befehl "Passwort ändern" auswählen
 
 ### Hostname ändern
 ```sudo hostname -b wortuhrpi```
 
 ### Helligkeitssensor aktivieren
-sudo raspi-config
+```sudo raspi-config```  
 -> 8 Update
 
-sudo raspi-config
--> 5 Interface Options
--> SPI aktivieren
+```sudo raspi-config```  
+-> 3 Interface Options
+-> P4 SPI aktivieren
 
 ```
 sudo nano /boot/config.txt
