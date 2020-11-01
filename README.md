@@ -65,7 +65,9 @@ PS: die Datei wpa_supplicant.conf wird bei jedem Bootvorgang wegkopiert, wenn es
 Dann im Menü den Befehl "Passwort ändern" auswählen
 
 ### Hostname ändern
-```sudo hostname -b wortuhrpi```
+```sudo raspi-config```  
+-> 1 System options  
+-> S4 Hostname " wortuhrpi"
 
 ### Helligkeitssensor aktivieren
 ```sudo raspi-config```  
