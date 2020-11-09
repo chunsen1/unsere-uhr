@@ -13,6 +13,7 @@
 * 50-100k Ohm Lichtsensor
 * 1M Ohm Widerstände
 * Litzen, Kabel
+* AD-Wandler MCP-3008
 * verschiedene Elektronik (@Sven, @Christian A.)
 
 ### Gehäuse
