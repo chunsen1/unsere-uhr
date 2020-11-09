@@ -9,7 +9,7 @@
 * ~10A DCDC von 12V auf 5V Wandler
 * LED-Licherkette (60 RGB LED Strip mit WS2812B 5050 SMD)
 * Raspberry Pi Nano v3 mit WLAN
-* SD-Karte
+* 16 GB SD-Karte
 * 50-100k Ohm Lichtsensor
 * 1M Ohm Widerstände
 * Litzen, Kabel
