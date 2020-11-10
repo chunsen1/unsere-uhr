@@ -40,6 +40,9 @@
 * Uhr-Git-Projekt installieren
 * Bootscript einfügen
 
+__Alternativ__  
+* fertig konfiguriertes Image mit [Win32DiskImager](https://www.heise.de/download/product/win32-disk-imager-92033) flashen
+
 ### W-Lan Verbindung konfigurieren
 1. SD-Karte an einen Rechner stecken
 2. Boot-Partition öffnen (geht auch unter Windows)
