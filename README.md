@@ -47,15 +47,15 @@ __Alternativ__
 ### W-Lan Verbindung konfigurieren
 1. SD-Karte an einen Rechner stecken
 2. Boot-Partition öffnen (geht auch unter Windows)
-3. Die Datei ```wpa.txt``` bearbeiten
+3. Die Datei [wpa_supplicant.conf](https://github.com/chunsen1/unsere-uhr/blob/master/documentation/etc/wpa_supplicant.conf) auf die SD-Karte kopieren
+4. die Datei bearbeiten:
     * Ins Feld ```ssid``` den Netzwerknamen eintragen
     * Ins Feld ```psk``` das Passwort eintragen
-4. Die Datei speichern und schließen
-5. Die Datei ```wpa.txt``` kopieren und im selben Ordner als ```wpa_supplicant.conf``` speichern
+5. Die Datei speichern und schließen
 6. Hardware sicher entfernen ;)
 7. Raspberry PI mit der Karte booten und Daumen drücken
 
-PS: die Datei wpa_supplicant.conf wird bei jedem Bootvorgang wegkopiert, wenn es nicht geklappt hat also wieder mit der wpa.txt beginnen.
+PS: die Datei wpa_supplicant.conf wird bei jedem Bootvorgang wegkopiert, wenn es nicht geklappt hat also wieder von vorn beginnen
 
 **Falls Fehler auftreten**
 * Eine Fehlerquelle liegt darin, dass Windows Dateiendungen ausblendet. Stellt sicher, dass die Datei ```wpa_supplicant.conf``` und nicht ```wpa_supplicant.conf.txt``` heißt
