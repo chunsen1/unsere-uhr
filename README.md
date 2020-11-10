@@ -87,23 +87,20 @@ sudo nano /boot/config.txt
 ### Raspbian aktualisieren
 
 ```bash
-sudo su
-apt update
-apt upgrade
-reboot
+sudo apt update
+sudo apt upgrade
+sudo reboot
 ```
 
 ### Uhr-Git-Projekt installieren
 
 ```bash
-apt install git
+sudo apt install git
 wget https://nodejs.org/dist/v8.9.3/node-v8.9.3-linux-armv6l.tar.xz
 tar -xf node-*
-cp -R node-*/* /usr/local
+sudo cp -R node-*/* /usr/local
 export PATH=$PATH:/usr/local/bin
 
-
-exit
 
 git clone https://github.com/chunsen1/unsere-uhr.git
 cd unsere-uhr
