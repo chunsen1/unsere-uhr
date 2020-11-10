@@ -67,8 +67,8 @@ Dann im Menü den Befehl "Passwort ändern" auswählen
 
 ### Hostname ändern
 ```sudo raspi-config```  
--> 1 System options  
--> S4 Hostname " wortuhrpi"
+-> 2 Network options  
+-> N1 Hostname " wortuhrpi"
 
 ### Helligkeitssensor aktivieren
 ```sudo raspi-config```  
