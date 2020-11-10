@@ -42,6 +42,7 @@
 
 __Alternativ__  
 * fertig konfiguriertes Image mit [Win32DiskImager](https://www.heise.de/download/product/win32-disk-imager-92033) flashen
+* WLAN-Verbindung anpassen (s. u.)
 
 ### W-Lan Verbindung konfigurieren
 1. SD-Karte an einen Rechner stecken
