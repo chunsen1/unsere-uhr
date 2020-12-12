@@ -3,7 +3,6 @@ const express = require('express'),
       http = require('http').Server(app),
       io = require('socket.io')(http),
       bodyParser = require('body-parser'),
-      cors = require('cors'),
       historyFallback = require('connect-history-api-fallback'),
       routesLight = require('./routes/light'),
       routesBrightness = require('./routes/brightness'),
@@ -12,11 +11,12 @@ const express = require('express'),
       clockStatus = require('./routes/clockStatus'),
       routesSchedule = require('./routes/schedule')
 
+const { createProxyMiddleware } = require('http-proxy-middleware')
+
 function startServer(port) {
     // middleware
     app.use(bodyParser.json())
-    // app.use(cors())
-
+    
     let prefix = '/api'
 
     // routes: ambient light sensor
@@ -50,7 +50,11 @@ function startServer(port) {
     app.use(historyFallback())
 
     // add ui
-    app.use(express.static('node_modules/unsere-uhr-ui/dist'))
+    //app.use(express.static('node_modules/unsere-uhr-ui/dist'))
+    app.use(createProxyMiddleware({
+        target: 'http://127.0.0.1:8080',
+        changeOrigin: true
+    }))
 
     // start server
     http.listen(port, () => console.log(`\r\n The server is running on localhost:${port}`))
