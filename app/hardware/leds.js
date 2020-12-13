@@ -8,7 +8,7 @@ const LED_COUNT = require('../configuration/led-layout').getLedCount()
 exitHook(ws281x.reset)
 
 // initialize the LED strip
-ws281x.init(LED_COUNT)
+ws281x.init(LED_COUNT, { dmaNum: 10 })
 
 // initialize status array
 let pixels = new Uint32Array(LED_COUNT)

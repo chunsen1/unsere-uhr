@@ -6,7 +6,7 @@
   "scripts": {
     "test": "node ./node_modules/mocha/bin/mocha",
     "service": "sudo node app.js",
-    "mock": "node ./test/utils/testApp.js -p 8081",
+    "mock": "DEBUG_PROXY_TARGET=http://127.0.0.1:8080 node ./test/utils/testApp.js -p 8081",
     "iterate": "sudo node iterate_words.js"
   },
   "bugs": {

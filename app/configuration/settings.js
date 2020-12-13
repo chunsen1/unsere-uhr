@@ -4,8 +4,7 @@ const LED_COUNT = require('./led-layout').getLedCount()
 const brightnessStrategies = {
     AMBIENT_LIGHT: 'AMBIENT_LIGHT',
     FIXED_VALUE: 'FIXED_VALUE',
-    SCHEDULE: 'SCHEDULE',
-    SCHEDULE_AMBIENT: 'SCHEDULE_AMBIENT'
+    SCHEDULE: 'SCHEDULE'
 } 
 let selectedStrategy = brightnessStrategies.AMBIENT_LIGHT
 let brightness = 60

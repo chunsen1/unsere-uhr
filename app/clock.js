@@ -13,7 +13,7 @@ module.exports = (dateTime) => {
     leds.clear()
 
     // check schedule (might influence brightness and color settings)
-    const active = schedule.applySchedule(date.getDay(), date.getHours(), date.getMinutes(), date.getSeconds())
+    const active = schedule.updateCurrentScheduleItem(date.getDay(), date.getHours(), date.getMinutes(), date.getSeconds())
 
     // determine which LEDs should be activated
     if (active) {

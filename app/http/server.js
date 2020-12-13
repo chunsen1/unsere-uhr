@@ -50,11 +50,14 @@ function startServer(port) {
     app.use(historyFallback())
 
     // add ui
-    //app.use(express.static('node_modules/unsere-uhr-ui/dist'))
-    app.use(createProxyMiddleware({
-        target: 'http://127.0.0.1:8080',
-        changeOrigin: true
-    }))
+    if (process.env.DEBUG_PROXY_TARGET) {
+        app.use(createProxyMiddleware({
+            target: process.env.DEBUG_PROXY_TARGET,
+            changeOrigin: true
+        }))
+    } else {
+        app.use(express.static('node_modules/unsere-uhr-ui/dist'))
+    }
 
     // start server
     http.listen(port, () => console.log(`\r\n The server is running on localhost:${port}`))

@@ -32,7 +32,7 @@ function validateContent(content) {
 
 function setSchedule(req, res) {
     if (req && req.body && validateContent(req.body)) {
-        this.settings.setSchedule(req.body)
+        settings.setSchedule(req.body)
     } else {
         res.status(400).json({
             success: false,

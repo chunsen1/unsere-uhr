@@ -3,6 +3,7 @@ const MA = require('moving-average')
 const S = require('../configuration/settings')
 const scale = require('../utils/scale')
 const VB = require('../utils/value-buffer')
+const schedule = require('../utils/schedule')
 
 // module status
 let initialized = 0
@@ -36,7 +37,8 @@ let getBrightness = () => {
     }
 
     if (S.brightness.getStrategy() === S.brightness.STRATEGIES.SCHEDULE) {
-        // todo: implement ;)
+        const current = schedule.getCurrentScheduleItem()
+        return Number.isInteger(current.brightness) ? current.brightness : scale(average.movingAverage())
     }
 
     // default strategy: fixed value

@@ -26,24 +26,17 @@ function determineScheduleItem(day, hour, minute, second) {
     })
 }
 
-function applySchedule(day, hour, minute, second) {
-    const item = determineScheduleItem(day, hour, minute, second)
+let currentItem = null
 
-    if (!item) {
-        return false
-    }
+function updateCurrentScheduleItem(day, hour, minute, second) {
+    currentItem = determineScheduleItem(day, hour, minute, second)
+    return currentItem
+}
 
-    if (item.color) {
-        settings.color.setAllUniform(item.color)
-    }
-
-    if (item.brightness) {
-        settings.brightness.setFixedValue(item.brightness)
-    }
-
-    return item.brightness > 0
+function getCurrentScheduleItem() {
+    return currentItem
 }
 
 module.exports = {
-    applySchedule
+    updateCurrentScheduleItem, getCurrentScheduleItem
 }
