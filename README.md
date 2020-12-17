@@ -112,6 +112,16 @@ npm install
 ### Bootscript einfügen
 
 > Diese Prozedur sollten wir mit [PM2](https://github.com/Unitech/pm2) vereinfachen, da die jetzige Variante nicht zuverlässig funktioniert.
+[Konfiguration des Startup-Skripts](https://pm2.keymetrics.io/docs/usage/startup/), [pm2 as root - Anleitung](https://stackoverflow.com/questions/35105100/start-app-as-root-with-pm2)  
+```bash
+sudo apt install pm2
+pm2 kill
+sudo pm2 start app.js
+
+sudo pm2 startup
+sudo pm2 save
+```
+
 
 rc.local bearbeiten:
 
