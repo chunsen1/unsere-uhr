@@ -13,9 +13,10 @@ let timespan = S.light.getTimeSpan() * 1000
 let average = MA(timespan)
 
 // open sensor and set reading interval
-let lightSensor = mcpadc.open(0, { speedHz: 1350000 }, e => {
+let lightSensor = mcpadc.openMcp3008(0, { speedHz: 1350000 }, e => {
     if (e) {
         console.log(e)
+        console.log('SPI NOT INITIALIZED!')
         initialized = -1
         return;
     }
