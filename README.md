@@ -121,7 +121,7 @@ sudo nano /etc/rc.local
 
 Folgendes in diese Datei eintragen (als Zeile vor ```exit 0```)
 
-> ```sudo /usr/local/bin/node /home/pi/unsere-uhr/app.js```
+> ```sudo /usr/bin/node /home/pi/unsere-uhr/app.js```
 
 ### Bei Zeitproblemen
 * sudo raspi-config -> Localization -> Zeitzone -> Europa -> Berlin
