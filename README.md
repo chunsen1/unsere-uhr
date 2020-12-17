@@ -70,8 +70,9 @@ PS: die Datei wpa_supplicant.conf wird bei jedem Bootvorgang wegkopiert, wenn es
 -> 8 Update
 
 ### Passwort ändern
-```sudo raspi-config```  
-Dann im Menü den Befehl "Passwort ändern" auswählen
+```sudo raspi-config``` 
+-> 1 System options  
+-> S3 Passwort ändern
 
 ### Hostname ändern
 ```sudo raspi-config```  
