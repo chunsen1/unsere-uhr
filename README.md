@@ -100,11 +100,8 @@ sudo reboot
 
 ```bash
 sudo apt install git
-wget https://nodejs.org/dist/v8.9.3/node-v8.9.3-linux-armv6l.tar.xz
-tar -xf node-*
-sudo cp -R node-*/* /usr/local
-export PATH=$PATH:/usr/local/bin
-
+sudo apt install nodejs
+sudo apt install npm
 
 git clone https://github.com/chunsen1/unsere-uhr.git
 cd unsere-uhr
