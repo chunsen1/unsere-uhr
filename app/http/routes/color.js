@@ -1,6 +1,6 @@
 const settings = require('../../configuration/settings')
 
-let getColor = (req, res) => res.status(200).json(settings.color.getAll())
+let getColor = (req, res) => res.status(200).json([...settings.color.getAll()])
 
 let setColor = (req, res) => {
     if (req.body) {
