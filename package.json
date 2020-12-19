@@ -39,7 +39,7 @@
     "moving-average": "^1.0.0",
     "rpi-ws281x-native": "^0.10.1",
     "socket.io": "^2.2.0",
-    "unsere-uhr-ui": "github:pawelrupek/unsere-uhr-ui",
+    "unsere-uhr-ui": "^1.0.0-0",
     "yargs": "^16.2.0"
   },
   "devDependencies": {

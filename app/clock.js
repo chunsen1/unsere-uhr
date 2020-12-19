@@ -22,8 +22,10 @@ module.exports = (dateTime) => {
         timeMapping.setHours(state)
         timeMapping.setSmallMinutes(state)
 
-        // render the result
+        // pass state to LEDs
         leds.lightLeds(state.leds)
-        leds.render()
     }
+
+    // render the result
+    leds.render()
 }
