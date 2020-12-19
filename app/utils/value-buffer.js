@@ -1,6 +1,7 @@
 function createBuffer(length) {
     const values = []
     let index = 0
+    let cb = null
 
     return {
         pushValue(value) {
@@ -12,6 +13,9 @@ function createBuffer(length) {
     
             // reset if the maximum index was reached
             if (index >= length) {
+                if (typeof cb === 'function') {
+                    cb(values)
+                }
                 index = 0
             }
         },
@@ -23,6 +27,9 @@ function createBuffer(length) {
         clear() {
             index = 0
             values = []
+        },
+        setResetCallback(callback) {
+            cb = callback
         }
     }
 }

@@ -17,9 +17,8 @@ let timespan = S.light.getTimeSpan() * 1000
 let average = MA(timespan)
 
 // check gestures
-function checkGestures(buffer) {
+function checkGestures(b) {
     const threshold = 0.2
-    const b = buffer.getStatus().values
     let low = false
     let count = 0
 
