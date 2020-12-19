@@ -1,16 +1,3 @@
-// [x] globalen status finden -> uhrzeit
-// [x] aus settings.schedule aktuelles intervall finden
-// [x] in hardware/light -> getbrightness aufruf hierhin einbauen (fixer wert oder umleitung auf ambient)
-// [x] in settings/color -> getcolor aufruf hierhin einbauen
-// [ ] http-Endpunkt zur Einstellung!
-
-// [ ] sleep mode bis zum nächsten intervall
-// [ ] party-mode bis zum nächsten intervall
-// [ ] regenbogen
-
-// [x] es ist nur zur vollen stunde
-// [x] 10 vor/nach halb
-
 const settings = require('../configuration/settings')
 const is = require('./is')
 

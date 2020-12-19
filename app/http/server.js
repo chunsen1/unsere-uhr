@@ -13,11 +13,11 @@ const express = require('express'),
 
 const { createProxyMiddleware } = require('http-proxy-middleware')
 
-function startServer(port) {
+function startServer() {
     // middleware
     app.use(bodyParser.json())
     
-    let prefix = '/api'
+    const prefix = '/api'
 
     // routes: ambient light sensor
     app.get(prefix + '/settings/light', routesLight.getLight)
@@ -58,6 +58,8 @@ function startServer(port) {
     } else {
         app.use(express.static('node_modules/unsere-uhr-ui/dist'))
     }
+
+    let port = process.env.PORT ? parseInt(process.env.PORT) : 8080
 
     // start server
     http.listen(port, () => console.log(`\r\n The server is running on localhost:${port}`))

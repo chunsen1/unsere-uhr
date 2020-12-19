@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "test": "node ./node_modules/mocha/bin/mocha",
-    "service": "sudo node app.js",
+    "service": "sudo node app.js -p 80",
     "mock": "DEBUG_PROXY_TARGET=http://127.0.0.1:8080 node ./test/utils/testApp.js -p 8081",
     "iterate": "sudo node iterate_words.js"
   },
@@ -27,20 +27,16 @@
   "dependencies": {
     "body-parser": "^1.18.2",
     "connect-history-api-fallback": "^1.6.0",
-    "cors": "^2.8.5",
     "datauri": "^1.1.0",
     "exit-hook": "^1.1.1",
     "express": "^4.16.2",
     "http-proxy-middleware": "^1.0.6",
     "later": "^1.2.0",
     "mcp-spi-adc": "^3.1.0",
-    "moment": "^2.19.1",
-    "moment-timezone": "^0.5.13",
     "moving-average": "^1.0.0",
     "rpi-ws281x-native": "^0.10.1",
     "socket.io": "^2.2.0",
-    "unsere-uhr-ui": "^1.0.0-0",
-    "yargs": "^16.2.0"
+    "unsere-uhr-ui": "^1.0.0-0"
   },
   "devDependencies": {
     "chai": "^4.1.2",

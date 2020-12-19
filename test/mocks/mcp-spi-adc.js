@@ -7,7 +7,7 @@ const handleMock = {
 }
 
 const outer = {
-    open: (port, options, callback) => {
+    openMcp3008: (port, options, callback) => {
         callback(withError ? { error: true } : null)
         return handleMock        
     }
