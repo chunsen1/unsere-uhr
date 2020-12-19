@@ -10,29 +10,34 @@ let initialized = 0
 
 // value buffer
 const VB = createBuffer(24 * 60 * 60 * 10) // 24 hours, 60 minutes, 60 seconds, 10 values/s
-const GestureBuffer = []
- 
+let GestureBuffer = []
+
 // moving average
 let timespan = S.light.getTimeSpan() * 1000
 let average = MA(timespan)
 
 // check gestures
 function checkGestures() {
-    const threshold = 0.5
+    const threshold = 0.05
     let low = false
-    let count = 0
+    let countToLow = 0
+    let countToHigh = 0
     let startedAt = -1
 
     for (let i = 0; i < GestureBuffer.length; i += 1) {
         if (GestureBuffer[i] > threshold) {
+            if (low && countToHigh + 1 === countToLow) {
+                countToHigh += 1
+            }
+
+            if (countToHigh === 1 && startedAt < 0) {
+                startedAt = GestureBuffer.length - 1
+            }
+
             low = false
         } else {
             if (low == false) {
-                if (count == 0 && startedAt < 0) {
-                    startedAt = GestureBuffer.length - 1
-                }
-
-                count += 1
+                countToLow += 1
             }
 
             low = true
@@ -40,10 +45,10 @@ function checkGestures() {
     }
 
     if (startedAt >= 0) {
-        console.log('Gesture: ', count)
+        console.log('Gesture: ', countToLow)
 
         startedAt = -1
-        count = 0
+        countToLow = 0
         low = false
         GestureBuffer = []
     }
