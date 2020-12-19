@@ -2,15 +2,47 @@ const mcpadc = require('mcp-spi-adc')
 const MA = require('moving-average')
 const S = require('../configuration/settings')
 const scale = require('../utils/scale')
-const VB = require('../utils/value-buffer')
+const { createBuffer } = require('../utils/value-buffer')
 const schedule = require('../utils/schedule')
 
 // module status
 let initialized = 0
 
+// value buffer
+const VB = createBuffer(24 * 60 * 60 * 10) // 24 hours, 60 minutes, 60 seconds, 10 values/s
+const GestureBuffer = createBuffer(2 * 10) // 2s
+ 
 // moving average
 let timespan = S.light.getTimeSpan() * 1000
 let average = MA(timespan)
+
+// check gestures
+function checkGestures(buffer) {
+    const threshold = 0.2
+    const b = buffer.getStatus().values
+    let low = false
+    let count = 0
+
+    for (let i = 0; i < b.length; i += 1) {
+        if (b[i] > threshold) {
+            low = false
+        } else {
+            if (low = false) {
+                count += 1
+            }
+
+            low = true
+        }
+    }
+
+    if (count >= 4) {
+        console.log("Geste 1")
+    }
+
+    if (count >= 2) {
+        console.log("Geste 2")
+    }
+}
 
 // open sensor and set reading interval
 let lightSensor = mcpadc.openMcp3008(0, { speedHz: 1350000 }, e => {
@@ -27,6 +59,7 @@ let lightSensor = mcpadc.openMcp3008(0, { speedHz: 1350000 }, e => {
             
             average.push(Date.now(), reading.value)
             VB.pushValue(reading.value)
+            GestureBuffer.pushValue(reading.value)
         })
     }, S.light.getReadInterval())
 })
