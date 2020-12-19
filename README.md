@@ -70,8 +70,9 @@ PS: die Datei wpa_supplicant.conf wird bei jedem Bootvorgang wegkopiert, wenn es
 -> 8 Update
 
 ### Passwort ändern
-```sudo raspi-config```  
-Dann im Menü den Befehl "Passwort ändern" auswählen
+```sudo raspi-config``` 
+-> 1 System options  
+-> S3 Passwort ändern
 
 ### Hostname ändern
 ```sudo raspi-config```  
@@ -100,11 +101,8 @@ sudo reboot
 
 ```bash
 sudo apt install git
-wget https://nodejs.org/dist/v8.9.3/node-v8.9.3-linux-armv6l.tar.xz
-tar -xf node-*
-sudo cp -R node-*/* /usr/local
-export PATH=$PATH:/usr/local/bin
-
+sudo apt install nodejs
+sudo apt install npm
 
 git clone https://github.com/chunsen1/unsere-uhr.git
 cd unsere-uhr
@@ -114,6 +112,16 @@ npm install
 ### Bootscript einfügen
 
 > Diese Prozedur sollten wir mit [PM2](https://github.com/Unitech/pm2) vereinfachen, da die jetzige Variante nicht zuverlässig funktioniert.
+[Konfiguration des Startup-Skripts](https://pm2.keymetrics.io/docs/usage/startup/), [pm2 as root - Anleitung](https://stackoverflow.com/questions/35105100/start-app-as-root-with-pm2)  
+```bash
+sudo apt install pm2
+pm2 kill
+sudo pm2 start app.js
+
+sudo pm2 startup
+sudo pm2 save
+```
+
 
 rc.local bearbeiten:
 
@@ -123,7 +131,7 @@ sudo nano /etc/rc.local
 
 Folgendes in diese Datei eintragen (als Zeile vor ```exit 0```)
 
-> ```sudo /usr/local/bin/node /home/pi/unsere-uhr/app.js```
+> ```sudo /usr/bin/node /home/pi/unsere-uhr/app.js```
 
 ### Bei Zeitproblemen
 * sudo raspi-config -> Localization -> Zeitzone -> Europa -> Berlin
