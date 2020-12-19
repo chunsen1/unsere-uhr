@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const later = require('later')
       clock = require('./app/clock'),
       settings = require('./app/configuration/settings'),

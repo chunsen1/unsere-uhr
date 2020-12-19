@@ -1,46 +1,58 @@
 {
-  "name": "unsere-uhr",
-  "version": "1.0.0-alpha.6",
-  "description": "Code für unsere Uhr",
-  "main": "app.js",
-  "scripts": {
-    "test": "node ./node_modules/mocha/bin/mocha",
-    "service": "sudo node app.js -p 80",
-    "mock": "DEBUG_PROXY_TARGET=http://127.0.0.1:8080 node ./test/utils/testApp.js -p 8081",
-    "iterate": "sudo node iterate_words.js"
-  },
-  "bugs": {
-    "url": "https://github.com/chunsen1/unsere-uhr/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/chunsen1/unsere-uhr.git"
-  },
-  "author": "chunsen1 && pawelrupek",
-  "license": "MIT",
-  "os": [
-    "linux"
-  ],
-  "cpu": [
-    "arm"
-  ],
-  "dependencies": {
-    "body-parser": "^1.18.2",
-    "connect-history-api-fallback": "^1.6.0",
-    "datauri": "^1.1.0",
-    "exit-hook": "^1.1.1",
-    "express": "^4.16.2",
-    "http-proxy-middleware": "^1.0.6",
-    "later": "^1.2.0",
-    "mcp-spi-adc": "^3.1.0",
-    "moving-average": "^1.0.0",
-    "rpi-ws281x-native": "^0.10.1",
-    "socket.io": "^2.2.0",
-    "unsere-uhr-ui": "^1.0.0-0"
-  },
-  "devDependencies": {
-    "chai": "^4.1.2",
-    "mocha": "^8.2.1",
-    "mockery": "^2.1.0"
-  }
+    "name": "unsere-uhr",
+    "version": "1.0.0-alpha.6",
+    "description": "Code für unsere Uhr",
+    "main": "app.js",
+    "bin": {
+        "wortuhr": "./app.js"
+    },
+    "scripts": {
+        "test": "node ./node_modules/mocha/bin/mocha",
+        "service": "sudo node app.js",
+        "mock": "DEBUG_PROXY_TARGET=http://127.0.0.1:8080 node ./test/utils/testApp.js -p 8081",
+        "iterate": "sudo node iterate_words.js"
+    },
+    "bugs": {
+        "url": "https://github.com/chunsen1/unsere-uhr/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/chunsen1/unsere-uhr.git"
+    },
+    "contributors": [
+        {
+            "name": "Christian Hunsen",
+            "url": "https://github.com/chunsen1"
+        },
+        {
+            "name": "Paul Rupek",
+            "url": "http://github.com/pawelrupek"
+        }
+    ],
+    "license": "MIT",
+    "os": [
+        "linux"
+    ],
+    "cpu": [
+        "arm"
+    ],
+    "dependencies": {
+        "body-parser": "^1.18.2",
+        "connect-history-api-fallback": "^1.6.0",
+        "datauri": "^1.1.0",
+        "exit-hook": "^1.1.1",
+        "express": "^4.16.2",
+        "http-proxy-middleware": "^1.0.6",
+        "later": "^1.2.0",
+        "mcp-spi-adc": "^3.1.0",
+        "moving-average": "^1.0.0",
+        "rpi-ws281x-native": "^0.10.1",
+        "socket.io": "^2.2.0",
+        "unsere-uhr-ui": "^1.0.0-0"
+    },
+    "devDependencies": {
+        "chai": "^4.1.2",
+        "mocha": "^8.2.1",
+        "mockery": "^2.1.0"
+    }
 }
