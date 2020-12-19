@@ -1,12 +1,16 @@
 const W = require('../../configuration/settings').words
 const DataUri = require('datauri')
 
-const viertel = new DataUri('assets/es_ist_viertel_acht.png'),
-      viertelNach = new DataUri('assets/es_ist_viertel_nach_sieben.png'),
-      dreiviertel = new DataUri('assets/es_ist_dreiviertel_acht.png'),
-      viertelVor = new DataUri('assets/es_ist_viertel_vor_acht.png'),
-      mitUhr = new DataUri('assets/es_ist_ein_uhr.png'),
-      ohneUhr = new DataUri('assets/es_ist_eins.png')
+const viertel = new DataUri(require.resolve('../../../assets/es_ist_viertel_acht.png')),
+      viertelNach = new DataUri(require.resolve('../../../assets/es_ist_viertel_nach_sieben.png')),
+      dreiviertel = new DataUri(require.resolve('../../../assets/es_ist_dreiviertel_acht.png')),
+      viertelVor = new DataUri(require.resolve('../../../assets/es_ist_viertel_vor_acht.png')),
+      mitUhr = new DataUri(require.resolve('../../../assets/es_ist_ein_uhr.png')),
+      ohneUhr = new DataUri(require.resolve('../../../assets/es_ist_eins.png')),
+      zwanzigVor = new DataUri(require.resolve('../../../assets/zwanzig_vor_vier.png')),
+      zehnNachHalb = new DataUri(require.resolve('../../../assets/zehn_nach_halb_vier.png')),
+      zwanzigNach = new DataUri(require.resolve('../../../assets/zwanzig_nach_drei.png')),
+      zehnVorHalb = new DataUri(require.resolve('../../../assets/zehn_vor_halb_vier.png'))
 
 const getWordSettings = (req, res) => res.status(200).json({
     Strategies: [
@@ -38,13 +42,13 @@ const getWordSettings = (req, res) => res.status(200).json({
                     id: W.TwentyMinutesStrategies.ZWANZIG_NACH,
                     title: 'Zwanzig nach',
                     description: 'Beispiel (16:20): "Es ist zwanzig nach vier"',
-                    thumbnail: null
+                    thumbnail: zwanzigNach.content
                 },
                 {
                     id: W.TwentyMinutesStrategies.ZEHN_VOR_HALB,
                     title: 'Zehn vor halb',
                     description: 'Beispiel (16:20): "Es ist zehn vor halb fünf"',
-                    thumbnail: null
+                    thumbnail: zehnVorHalb.content
                 }
             ]
         },
@@ -57,13 +61,13 @@ const getWordSettings = (req, res) => res.status(200).json({
                     id: W.FourtyMinutesStrategies.ZWANZIG_VOR,
                     title: 'Zwanzig vor',
                     description: 'Beispiel (16:40): "Es ist zwanzig vor fünf"',
-                    thumbnail: null
+                    thumbnail: zwanzigVor.content
                 },
                 {
                     id: W.FourtyMinutesStrategies.ZEHN_NACH_HALB,
                     title: 'Zehn nach halb',
                     description: 'Beispiel (16:40): "Es ist zehn nach halb fünf"',
-                    thumbnail: null
+                    thumbnail: zehnNachHalb.content
                 }
             ]
         },
