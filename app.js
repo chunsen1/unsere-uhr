@@ -1,13 +1,17 @@
 #!/usr/bin/env node
 
 const later = require('later')
-      clock = require('./app/clock'),
-      settings = require('./app/configuration/settings'),
-      server = require('./app/http/server')
+const isRoot = require('is-root')
+const clock = require('./app/clock')
+const server = require('./app/http/server')
 
-// schedule the clock
-let schedule = later.parse.text('every 1 seconds')
-later.setInterval(clock, schedule)
+if (isRoot()) {
+    // schedule the clock
+    let schedule = later.parse.text('every 1 seconds')
+    later.setInterval(clock, schedule)
 
-// start the http server
-server.startServer()
+    // start the http server
+    server.startServer()
+} else {
+    console.log('The LED-API needs root access, try using sudo.')
+}

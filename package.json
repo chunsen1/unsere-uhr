@@ -43,6 +43,7 @@
         "exit-hook": "^1.1.1",
         "express": "^4.16.2",
         "http-proxy-middleware": "^1.0.6",
+        "is-root": "^2.1.0",
         "later": "^1.2.0",
         "mcp-spi-adc": "^3.1.0",
         "moving-average": "^1.0.0",
