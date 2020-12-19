@@ -10,23 +10,28 @@ let initialized = 0
 
 // value buffer
 const VB = createBuffer(24 * 60 * 60 * 10) // 24 hours, 60 minutes, 60 seconds, 10 values/s
-const GestureBuffer = createBuffer(2 * 10) // 2s
+const GestureBuffer = []
  
 // moving average
 let timespan = S.light.getTimeSpan() * 1000
 let average = MA(timespan)
 
 // check gestures
-function checkGestures(b) {
-    const threshold = 0.2
+function checkGestures() {
+    const threshold = 0.5
     let low = false
     let count = 0
+    let startedAt = -1
 
-    for (let i = 0; i < b.length; i += 1) {
-        if (b[i] > threshold) {
+    for (let i = 0; i < GestureBuffer.length; i += 1) {
+        if (GestureBuffer[i] > threshold) {
             low = false
         } else {
-            if (low = false) {
+            if (low == false) {
+                if (count == 0 && startedAt < 0) {
+                    startedAt = GestureBuffer.length - 1
+                }
+
                 count += 1
             }
 
@@ -34,12 +39,17 @@ function checkGestures(b) {
         }
     }
 
-    if (count >= 4) {
-        console.log("Geste 1")
+    if (startedAt >= 0) {
+        console.log('Gesture: ', count)
+
+        startedAt = -1
+        count = 0
+        low = false
+        GestureBuffer = []
     }
 
-    if (count >= 2) {
-        console.log("Geste 2")
+    if (GestureBuffer.length > 50) {
+        GestureBuffer = []
     }
 }
 
@@ -58,7 +68,8 @@ let lightSensor = mcpadc.openMcp3008(0, { speedHz: 1350000 }, e => {
             
             average.push(Date.now(), reading.value)
             VB.pushValue(reading.value)
-            GestureBuffer.pushValue(reading.value)
+            GestureBuffer.push(reading.value)
+            checkGestures()
         })
     }, S.light.getReadInterval())
 })
