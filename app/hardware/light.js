@@ -4,59 +4,18 @@ const S = require('../configuration/settings')
 const scale = require('../utils/scale')
 const { createBuffer } = require('../utils/value-buffer')
 const schedule = require('../utils/schedule')
+const GestureBuffer = require('../utils/GestureBuffer')
 
 // module status
 let initialized = 0
 
 // value buffer
 const VB = createBuffer(24 * 60 * 60 * 10) // 24 hours, 60 minutes, 60 seconds, 10 values/s
-let GestureBuffer = []
+let gb = new GestureBuffer()
 
 // moving average
 let timespan = S.light.getTimeSpan() * 1000
 let average = MA(timespan)
-
-// check gestures
-function checkGestures() {
-    const threshold = 0.05
-    let low = false
-    let countToLow = 0
-    let countToHigh = 0
-    let startedAt = -1
-
-    for (let i = 0; i < GestureBuffer.length; i += 1) {
-        if (GestureBuffer[i] > threshold) {
-            if (low && countToHigh + 1 === countToLow) {
-                countToHigh += 1
-            }
-
-            if (countToHigh === 1 && startedAt < 0) {
-                startedAt = GestureBuffer.length - 1
-            }
-
-            low = false
-        } else {
-            if (low == false) {
-                countToLow += 1
-            }
-
-            low = true
-        }
-    }
-
-    if (startedAt >= 0) {
-        console.log('Gesture: ', countToLow)
-
-        startedAt = -1
-        countToLow = 0
-        low = false
-        GestureBuffer = []
-    }
-
-    if (GestureBuffer.length > 50) {
-        GestureBuffer = []
-    }
-}
 
 // open sensor and set reading interval
 let lightSensor = mcpadc.openMcp3008(0, { speedHz: 1350000 }, e => {
@@ -73,8 +32,11 @@ let lightSensor = mcpadc.openMcp3008(0, { speedHz: 1350000 }, e => {
             
             average.push(Date.now(), reading.value)
             VB.pushValue(reading.value)
-            GestureBuffer.push(reading.value)
-            checkGestures()
+            gb.push(reading.value)
+            const gesture = gb.checkGestures()
+            if (gesture) {
+                console.log('Gesture: ', gesture.low, gesture.high)
+            }
         })
     }, S.light.getReadInterval())
 })
