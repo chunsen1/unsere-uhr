@@ -1,3 +1,5 @@
+const emitter = require('../http/ws')
+
 function createBuffer(length) {
     const values = []
     let index = 0
@@ -7,6 +9,11 @@ function createBuffer(length) {
         pushValue(value) {
             // assign value
             values[index] = value
+
+            // broadcast
+            if (index % 10 === 0 && emitter.getSocket()) {
+                emitter.getSocket().emit('ambient-light', values.slice(Math.max(values.length - 10, 0)))
+            }
     
             // increment
             index += 1

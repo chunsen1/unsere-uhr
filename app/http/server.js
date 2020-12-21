@@ -9,7 +9,8 @@ const express = require('express'),
       routesColor = require('./routes/color'),
       routesText = require('./routes/text'),
       clockStatus = require('./routes/clockStatus'),
-      routesSchedule = require('./routes/schedule')
+      routesSchedule = require('./routes/schedule'),
+      emitter = require('./ws')
 
 const { createProxyMiddleware } = require('http-proxy-middleware')
 
@@ -63,6 +64,9 @@ function startServer() {
 
     // start server
     http.listen(port, () => console.log(`\r\n The server is running on localhost:${port}`))
+
+    // make socket.io globally accessible
+    emitter.setSocket(io)
 }
 
 module.exports = {
