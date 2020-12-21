@@ -5,6 +5,7 @@ const scale = require('../utils/scale')
 const { createBuffer } = require('../utils/value-buffer')
 const schedule = require('../utils/schedule')
 const GestureBuffer = require('../utils/GestureBuffer')
+const { expect } = require('chai')
 
 // module status
 let initialized = 0
@@ -35,7 +36,26 @@ let lightSensor = mcpadc.openMcp3008(0, { speedHz: 1350000 }, e => {
             gb.push(reading.value)
             const gesture = gb.checkGestures()
             if (gesture) {
-                console.log('Gesture: ', gesture.low, gesture.high)
+                if (gesture.low == gesture.high) {
+                    if (gesture.low == 2) {
+                        let d = new Date()
+                        exec('timedatectl set-ntp false')
+                        exec(`date -s "UTC:${d.getUTCMonth() + 1}/${d.getUTCDate()}/${d.getUTCFullYear()} ${d.getUTCHours() + 1}:${d.getUTCMinutes()}:00" --utc`)
+                        console.log('+1 hour')
+                    }
+
+                    if (gesture.low == 3) {
+                        exec('timedatectl set-ntp false')
+                        exec(`date -s "UTC:${d.getUTCMonth() + 1}/${d.getUTCDate()}/${d.getUTCFullYear()} ${d.getUTCHours()}:${d.getUTCMinutes() + 5}:00" --utc`)
+                        console.log('+5 minutes')
+                    }
+
+                    if (gesture.low == 4) {
+                        exec('timedatectl set-ntp false')
+                        exec(`date -s "UTC:${d.getUTCMonth() + 1}/${d.getUTCDate()}/${d.getUTCFullYear()} ${d.getUTCHours()}:${d.getUTCMinutes()}:00" --utc`)
+                        console.log('00 seconds')
+                    }
+                }
             }
         })
     }, S.light.getReadInterval())

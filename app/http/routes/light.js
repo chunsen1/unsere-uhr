@@ -118,10 +118,6 @@ function setLight(req, res) {
     }
 }
 
-function readAmbientLight(req, res) {
-    res.status(200).json(VB.getStatus())
-}
-
 module.exports = {
-    getLight, setLight, readAmbientLight
+    getLight, setLight
 }

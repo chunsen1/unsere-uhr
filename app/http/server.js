@@ -23,7 +23,6 @@ function startServer() {
     // routes: ambient light sensor
     app.get(prefix + '/settings/light', routesLight.getLight)
     app.put(prefix + '/settings/light', routesLight.setLight)
-    app.get(prefix + '/light', routesLight.readAmbientLight)
 
     // routes: brightness settings
     app.get(prefix + '/settings/brightness', routesBrightness.getBrightness)

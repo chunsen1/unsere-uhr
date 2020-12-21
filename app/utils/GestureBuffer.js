@@ -64,8 +64,6 @@ class GestureBuffer {
             wasHigh = false
             wasLow = false
             this.values = []
-
-            return "reset"
         }
     }
 
