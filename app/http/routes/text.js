@@ -1,4 +1,5 @@
-const W = require('../../configuration/settings').words
+const settings = require('../../configuration/settings')
+const W = settings.words
 const DataUri = require('datauri')
 
 const viertel = new DataUri(require.resolve('../../../assets/es_ist_viertel_acht.png')),
@@ -164,6 +165,8 @@ const setWordStrategies = (req, res) => {
         W.setTwentyMinutesStrategy(req.body.twentyMinutesStrategy)
         W.setFourtyMinutesStrategy(req.body.fourtyMinutesStrategy)
         W.setItIsStrategy(req.body.itIsStrategy)
+
+        settings.trySaveConfig()
 
         res.status(200).json({
             success: true,

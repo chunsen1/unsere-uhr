@@ -33,6 +33,8 @@ function setBrightness(req, res) {
         result.strategy = setStrategy(req.body.strategy)
         result.success = result.fixedValue.success && result.strategy.success
 
+        settings.trySaveConfig()
+        
         res.status(result.success ? 200 : 400).json(result)
     } else {
         res.status(400).json({

@@ -33,6 +33,7 @@ function validateContent(content) {
 function setSchedule(req, res) {
     if (req && req.body && validateContent(req.body)) {
         settings.schedule = req.body
+        settings.trySaveConfig()
         res.status(200).json({
             success: true
         })

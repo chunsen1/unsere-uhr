@@ -1,3 +1,5 @@
+const fs = require('fs')
+
 const LED_COUNT = require('./led-layout').getLedCount()
 
 // brightness strategy
@@ -75,6 +77,47 @@ const schedule = [
         brightness: 60
     }
 ]
+
+// save and load config
+let saveConfiguration = null
+
+if (process.env.CONFIG) {
+    fs.readFile(process.env.CONFIG, (error, data) => {
+        if (!error) {
+            try {
+                const data = JSON.parse(data)
+
+                if (data.quarterPastStrategy) { quarterPastStrategy = data.quarterPastStrategy }
+                if (data.quarterToStrategy) { quarterToStrategy = data.quarterToStrategy }
+                if (data.oClockStrategy) { oClockStrategy = data.oClockStrategy }
+                if (data.itIsStrategy) { itIsStrategy = data.itIsStrategy }
+                if (data.twentyMinutesStrategy) { twentyMinutesStrategy = data.twentyMinutesStrategy }
+                if (data.fourtyMinutesStrategy) { fourtyMinutesStrategy = data.fourtyMinutesStrategy }
+
+                if (data.schedule) { schedule = data.schedule}
+
+                if (data.selectedStrategy) { selectedStrategy = data.selectedStrategy}
+                if (data.brightness) { brightness = data.brightness}
+            } catch (e) {
+
+            }
+        }
+    })
+
+    saveConfiguration = () {
+        fs.writeFile(process.env.CONFIG, JSON.stringify({
+            quarterPastStrategy: quarterPastStrategy,
+            quarterToStrategy: quarterToStrategy,
+            oClockStrategy: oClockStrategy,
+            itIsStrategy: itIsStrategy,
+            twentyMinutesStrategy: twentyMinutesStrategy,
+            fourtyMinutesStrategy: fourtyMinutesStrategy,
+            schedule: schedule,
+            selectedStrategy: selectedStrategy,
+            brightness: brightness
+        }))
+    }
+}
 
 // exports
 module.exports = {
@@ -162,5 +205,8 @@ module.exports = {
             }
         }
     },
-    schedule: schedule
+    schedule: schedule,
+    trySaveConfig: () => {
+        if (saveConfiguration) { saveConfiguration() }
+    }
 }
