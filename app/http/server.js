@@ -23,6 +23,7 @@ function startServer() {
     // routes: ambient light sensor
     app.get(prefix + '/settings/light', routesLight.getLight)
     app.put(prefix + '/settings/light', routesLight.setLight)
+    app.get(prefix + '/status/light', routesLight.getAmbientLightData)
 
     // routes: brightness settings
     app.get(prefix + '/settings/brightness', routesBrightness.getBrightness)
@@ -59,7 +60,7 @@ function startServer() {
         app.use(express.static('node_modules/unsere-uhr-ui/dist'))
     }
 
-    let port = process.env.PORT ? parseInt(process.env.PORT) : 8080
+    let port = process.env.PORT ? parseInt(process.env.PORT) : 80
 
     // start server
     http.listen(port, () => console.log(`\r\n The server is running on localhost:${port}`))

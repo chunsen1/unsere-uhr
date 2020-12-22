@@ -5,7 +5,7 @@ const scale = require('../utils/scale')
 const { createBuffer } = require('../utils/value-buffer')
 const schedule = require('../utils/schedule')
 const GestureBuffer = require('../utils/GestureBuffer')
-const { expect } = require('chai')
+const { exec } = require('child_process')
 
 // module status
 let initialized = 0
@@ -39,21 +39,29 @@ let lightSensor = mcpadc.openMcp3008(0, { speedHz: 1350000 }, e => {
                 if (gesture.low == gesture.high) {
                     if (gesture.low == 2) {
                         let d = new Date()
-                        exec('timedatectl set-ntp false')
-                        exec(`date -s "UTC:${d.getUTCMonth() + 1}/${d.getUTCDate()}/${d.getUTCFullYear()} ${d.getUTCHours() + 1}:${d.getUTCMinutes()}:00" --utc`)
-                        console.log('+1 hour')
+                        exec('timedatectl set-ntp false', (error, stdout, stderr) => {
+                            if (!error) {
+                                exec(`timedatectl set-time "${d.getUTCFullYear()}-${d.getUTCMonth() + 1}-${d.getUTCDate()} ${d.getUTCHours() + 1}:00:00 UTC"`)
+                            }
+                        })
                     }
 
                     if (gesture.low == 3) {
-                        exec('timedatectl set-ntp false')
-                        exec(`date -s "UTC:${d.getUTCMonth() + 1}/${d.getUTCDate()}/${d.getUTCFullYear()} ${d.getUTCHours()}:${d.getUTCMinutes() + 5}:00" --utc`)
-                        console.log('+5 minutes')
+                        let d = new Date()
+                        exec('timedatectl set-ntp false', (error, stdout, stderr) => {
+                            if (!error) {
+                                exec(`timedatectl set-time "${d.getUTCFullYear()}-${d.getUTCMonth() + 1}-${d.getUTCDate()} ${d.getUTCHours()}:${d.getUTCMinutes() + 5}:00 UTC"`)
+                            }
+                        })
                     }
 
                     if (gesture.low == 4) {
-                        exec('timedatectl set-ntp false')
-                        exec(`date -s "UTC:${d.getUTCMonth() + 1}/${d.getUTCDate()}/${d.getUTCFullYear()} ${d.getUTCHours()}:${d.getUTCMinutes()}:00" --utc`)
-                        console.log('00 seconds')
+                        let d = new Date()
+                        exec('timedatectl set-ntp false', (error, stdout, stderr) => {
+                            if (!error) {
+                                exec(`timedatectl set-time "${d.getUTCFullYear()}-${d.getUTCMonth() + 1}-${d.getUTCDate()} ${d.getUTCHours()}:${d.getUTCMinutes()}:00 UTC"`)
+                            }
+                        })
                     }
                 }
             }
@@ -76,7 +84,13 @@ let getBrightness = () => {
     return S.brightness.getFixedValue()
 }
 
+// buffer accessor
+function getBuffer() {
+    return VB
+}
+
 // exports
 module.exports = {
-    getBrightness: getBrightness
+    getBrightness,
+    getBuffer
 }

@@ -17,7 +17,7 @@ let currentItem = null
 
 function updateCurrentScheduleItem(day, hour, minute, second) {
     currentItem = determineScheduleItem(day, hour, minute, second)
-    return currentItem
+    return currentItem || !settings.brightness.getStrategy() === settings.brightness.STRATEGIES.SCHEDULE
 }
 
 function getCurrentScheduleItem() {
