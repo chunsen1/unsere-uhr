@@ -1,6 +1,6 @@
 {
     "name": "unsere-uhr",
-    "version": "1.0.0-alpha.10",
+    "version": "1.0.0",
     "description": "Code für unsere Uhr",
     "main": "app.js",
     "bin": {
