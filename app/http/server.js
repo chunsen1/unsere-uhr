@@ -57,7 +57,7 @@ function startServer() {
             changeOrigin: true
         }))
     } else {
-        app.use(express.static('node_modules/unsere-uhr-ui/dist'))
+        app.use(express.static(require.resolve('../../node_modules/unsere-uhr-ui/dist/index.html').replace('index.html', '')))
     }
 
     let port = process.env.PORT ? parseInt(process.env.PORT) : 80
