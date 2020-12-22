@@ -1,4 +1,5 @@
 const fs = require('fs')
+const { get } = require('http')
 
 const LED_COUNT = require('./led-layout').getLedCount()
 
@@ -67,7 +68,7 @@ let twentyMinutesStrategy = twentyMinutesStrategies.ZWANZIG_NACH
 let fourtyMinutesStrategy = fourtyMinutesStrategies.ZWANZIG_VOR
 
 // schedule
-const schedule = [
+let schedule = [
     {
         startDay: 0,
         startTime: { h: 0, m: 0, s: 0},
@@ -79,45 +80,46 @@ const schedule = [
 ]
 
 // save and load config
-let saveConfiguration = null
+let configPath = process.env.CONFIG ? process.env.CONFIG : '.unsere-uhr.config' 
 
-if (process.env.CONFIG) {
-    fs.readFile(process.env.CONFIG, (error, data) => {
-        if (!error) {
-            try {
-                const data = JSON.parse(data)
+fs.readFile(configPath, (error, data) => {
+    if (!error) {
+        try {
+            const d = JSON.parse(data)
 
-                if (data.quarterPastStrategy) { quarterPastStrategy = data.quarterPastStrategy }
-                if (data.quarterToStrategy) { quarterToStrategy = data.quarterToStrategy }
-                if (data.oClockStrategy) { oClockStrategy = data.oClockStrategy }
-                if (data.itIsStrategy) { itIsStrategy = data.itIsStrategy }
-                if (data.twentyMinutesStrategy) { twentyMinutesStrategy = data.twentyMinutesStrategy }
-                if (data.fourtyMinutesStrategy) { fourtyMinutesStrategy = data.fourtyMinutesStrategy }
+            if (d.quarterPastStrategy) { quarterPastStrategy = d.quarterPastStrategy }
+            if (d.quarterToStrategy) { quarterToStrategy = d.quarterToStrategy }
+            if (d.oClockStrategy) { oClockStrategy = d.oClockStrategy }
+            if (d.itIsStrategy) { itIsStrategy = d.itIsStrategy }
+            if (d.twentyMinutesStrategy) { twentyMinutesStrategy = d.twentyMinutesStrategy }
+            if (d.fourtyMinutesStrategy) { fourtyMinutesStrategy = d.fourtyMinutesStrategy }
 
-                if (data.schedule) { schedule = data.schedule}
+            if (d.schedule) { schedule = d.schedule}
 
-                if (data.selectedStrategy) { selectedStrategy = data.selectedStrategy}
-                if (data.brightness) { brightness = data.brightness}
-            } catch (e) {
-
-            }
+            if (d.selectedStrategy) { selectedStrategy = d.selectedStrategy}
+            if (d.brightness) { brightness = d.brightness}
+        } catch (e) {
+            console.error('Konfigurationsdatei konnte nicht gelesen werden', e)
         }
-    })
-
-    saveConfiguration = () {
-        fs.writeFile(process.env.CONFIG, JSON.stringify({
-            quarterPastStrategy: quarterPastStrategy,
-            quarterToStrategy: quarterToStrategy,
-            oClockStrategy: oClockStrategy,
-            itIsStrategy: itIsStrategy,
-            twentyMinutesStrategy: twentyMinutesStrategy,
-            fourtyMinutesStrategy: fourtyMinutesStrategy,
-            schedule: schedule,
-            selectedStrategy: selectedStrategy,
-            brightness: brightness
-        }))
+    } else {
+        console.error('Konfigurationsdatei konnte nicht gelesen werden', error)
     }
+})
+
+let saveConfiguration = () => {
+    fs.writeFile(configPath, JSON.stringify({
+        quarterPastStrategy: quarterPastStrategy,
+        quarterToStrategy: quarterToStrategy,
+        oClockStrategy: oClockStrategy,
+        itIsStrategy: itIsStrategy,
+        twentyMinutesStrategy: twentyMinutesStrategy,
+        fourtyMinutesStrategy: fourtyMinutesStrategy,
+        schedule: schedule,
+        selectedStrategy: selectedStrategy,
+        brightness: brightness
+    }), (e) => console.log(' Konfiguration gespeichert', e))
 }
+
 
 // exports
 module.exports = {
@@ -205,7 +207,10 @@ module.exports = {
             }
         }
     },
-    schedule: schedule,
+    schedule: {
+        get: () => schedule,
+        set: newSchedule => schedule = newSchedule 
+    },
     trySaveConfig: () => {
         if (saveConfiguration) { saveConfiguration() }
     }

@@ -1,7 +1,7 @@
 const settings = require('../../configuration/settings')
 
 function getSchedule(req, res) {
-    res.status(200).json(settings.schedule)
+    res.status(200).json(settings.schedule.get())
 }
 
 function validateTime(time) {
@@ -32,7 +32,7 @@ function validateContent(content) {
 
 function setSchedule(req, res) {
     if (req && req.body && validateContent(req.body)) {
-        settings.schedule = req.body
+        settings.schedule.set(req.body)
         settings.trySaveConfig()
         res.status(200).json({
             success: true

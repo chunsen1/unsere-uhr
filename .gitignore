@@ -58,3 +58,6 @@ typings/
 .env
 
 documentation/etc/wpa_supplicant.conf
+
+# condig file
+.unsere-uhr.config

@@ -50,7 +50,9 @@ let lightSensor = mcpadc.openMcp3008(0, { speedHz: 1350000 }, e => {
                         let d = new Date()
                         exec('timedatectl set-ntp false', (error, stdout, stderr) => {
                             if (!error) {
-                                exec(`timedatectl set-time "${d.getUTCFullYear()}-${d.getUTCMonth() + 1}-${d.getUTCDate()} ${d.getUTCHours()}:${d.getUTCMinutes() + 5}:00 UTC"`)
+                                let m = d.getUTCMinutes()
+                                let mins = m - (m % 5) + 5
+                                exec(`timedatectl set-time "${d.getUTCFullYear()}-${d.getUTCMonth() + 1}-${d.getUTCDate()} ${d.getUTCHours()}:${mins}:00 UTC"`)
                             }
                         })
                     }
@@ -77,7 +79,7 @@ let getBrightness = () => {
 
     if (S.brightness.getStrategy() === S.brightness.STRATEGIES.SCHEDULE) {
         const current = schedule.getCurrentScheduleItem()
-        return Number.isInteger(current.brightness) ? current.brightness : scale(average.movingAverage())
+        return current.isFixedBrightness && Number.isInteger(current.brightness) ? current.brightness : scale(average.movingAverage())
     }
 
     // default strategy: fixed value

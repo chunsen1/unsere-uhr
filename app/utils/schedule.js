@@ -4,7 +4,7 @@ const is = require('./is')
 const toSeconds = (d, h, m, s) => d * 24 * 3600 + h * 3600 + m * 60 + s
 
 function determineScheduleItem(day, hour, minute, second) {
-    return settings.schedule.find(x => {
+    return settings.schedule.get().find(x => {
         return is(toSeconds(day, hour, minute, second))
                 .between(
                     toSeconds(x.startDay, x.startTime.h, x.startTime.m, x.startTime.s), 
