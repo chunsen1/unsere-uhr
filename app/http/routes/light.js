@@ -119,7 +119,14 @@ function setLight(req, res) {
 }
 
 function getAmbientLightData(req, res) {
-    res.status(200).json(hwLight.getBuffer().getStatus())
+    let x = hwLight.getBuffer().getStatus()
+    res.status(200).json({
+        average: x.values.reduce((p, c) => p + c, 0) / x.values.length,
+        max: Math.max(...x.values),
+        min: Math.min(...x.values),
+        samples: x.values.length,
+        timespan: `${(new Date(Date.now() - x.values.length * 100)).toLocaleTimeString()} bis ${(new Date(Date.now())).toLocaleTimeString()}`
+    })
 }
 
 module.exports = {
