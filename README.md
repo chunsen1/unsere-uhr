@@ -89,7 +89,7 @@ sudo nano /boot/config.txt
 ```
 /boot/config.txt -> "dtparam=audio=on" -> Auskommentieren "# dtparam=audio=on"
 
-### Raspbian aktualisieren
+### RaspberryPi OS aktualisieren
 
 ```bash
 sudo apt update
@@ -99,6 +99,13 @@ sudo reboot
 
 ### Uhr-Git-Projekt installieren
 
+```bash
+sudo apt install npm
+sudo apt install git
+npm install unsere-uhr -g
+```
+  
+#### Alternativ das Git-Project auschecken und selbst bauen:  
 ```bash
 sudo apt install git
 sudo apt install nodejs
@@ -111,10 +118,10 @@ npm install
 
 ### Bootscript einfügen
 
-> Diese Prozedur sollten wir mit [PM2](https://github.com/Unitech/pm2) vereinfachen, da die jetzige Variante nicht zuverlässig funktioniert.
-[Konfiguration des Startup-Skripts](https://pm2.keymetrics.io/docs/usage/startup/), [pm2 as root - Anleitung](https://stackoverflow.com/questions/35105100/start-app-as-root-with-pm2)  
+[PM2](https://github.com/Unitech/pm2) für das Startup-Skript (Quelle: [Konfiguration des Startup-Skripts](https://pm2.keymetrics.io/docs/usage/startup/), [pm2 as root - Anleitung](https://stackoverflow.com/questions/35105100/start-app-as-root-with-pm2))  
+
 ```bash
-sudo apt install pm2
+sudo npm install pm2 -g
 pm2 kill
 sudo pm2 start app.js
 
@@ -122,13 +129,10 @@ sudo pm2 startup
 sudo pm2 save
 ```
 
-
-rc.local bearbeiten:
-
+#### Alternativ: rc.local bearbeiten:
 ```bash
 sudo nano /etc/rc.local
 ```
-
 Folgendes in diese Datei eintragen (als Zeile vor ```exit 0```)
 
 > ```sudo /usr/bin/node /home/pi/unsere-uhr/app.js```
