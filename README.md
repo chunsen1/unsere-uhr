@@ -140,10 +140,12 @@ Folgendes in diese Datei eintragen (als Zeile vor ```exit 0```)
 ### Bei Zeitproblemen
 * sudo raspi-config -> Localization -> Zeitzone -> Europa -> Berlin
 * eigener Zeitserver
-    * ```sudo apt-get install ntp```
-    * ```sudo apt-get install ntpdate```
-    * ```sudo ntpd -qg```
-    * ```sudo reboot now```
+    ```bash
+    sudo apt-get install ntp
+    sudo apt-get install ntpdate
+    sudo ntpd -qg
+    sudo reboot now
+    ```
 * Manuelles Update
 
 ## Uhr Updaten
